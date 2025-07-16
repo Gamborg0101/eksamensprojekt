@@ -26,3 +26,4 @@
 /Users/caspergamborg/Desktop/eksamensprojekt/obj/Debug/net9.0/eksamensprojekt.pdb
 /Users/caspergamborg/Desktop/eksamensprojekt/obj/Debug/net9.0/eksamensprojekt.genruntimeconfig.cache
 /Users/caspergamborg/Desktop/eksamensprojekt/obj/Debug/net9.0/ref/eksamensprojekt.dll
+/Users/caspergamborg/Desktop/eksamensprojekt/obj/Debug/net9.0/eksamensprojekt.sourcelink.json

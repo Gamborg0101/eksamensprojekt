@@ -2,6 +2,11 @@
 {
     static void Main()
     {
-        Console.WriteLine("Hello world");
+        Besøgende test1 = new Besøgende();
+        Console.WriteLine(test1.sigHej());
+
+        Styring styring = new Styring(); 
+        styring.StartProgram();
     }
+
 }
