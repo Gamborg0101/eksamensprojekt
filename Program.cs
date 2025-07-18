@@ -3,10 +3,8 @@
     static void Main()
     {
         Besøgende test1 = new Besøgende();
-        Console.WriteLine(test1.sigHej());
+        test1.OpretBesøgende();
+        test1.PrintBesøgende();
 
-        Styring styring = new Styring(); 
-        styring.StartProgram();
     }
-
 }
