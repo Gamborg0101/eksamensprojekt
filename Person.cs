@@ -18,12 +18,4 @@ class Person
     {
         Console.WriteLine($"Navn: {Name} og id: {Id}");
     }
-
-
-
-
-
-
-
-
 }

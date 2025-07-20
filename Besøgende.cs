@@ -8,12 +8,11 @@ class Besøgende
 
   }
 
-  public void OpretBesøgende()
+  public void OpretBesøgende(string navn, string begrundelse)
   {
-    BesøgendeListe.Add(new Person("Casper", "Vigtig information"));
-    BesøgendeListe.Add(new Person("Helle", "Mere information"));
-
+    BesøgendeListe.Add(new Person(navn, begrundelse));
   }
+
   public void PrintBesøgende()
   {
     foreach (Person n in BesøgendeListe)
