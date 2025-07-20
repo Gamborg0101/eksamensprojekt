@@ -45,7 +45,7 @@ class Styring
                 int counter = 3;
                 for (int n = 0; n < 3; n++)
                 {
-                    Console.WriteLine("Hvad er grunden for besøget?");
+                    Console.WriteLine("Hvad er grunden for besøgt?");
                     string begrundelse = Console.ReadLine();
 
                     if (begrundelse == "" || begrundelse.Length < 5)
@@ -66,22 +66,27 @@ class Styring
                     }
                 }
             }
+
             /*Brugervalg - søg - */
             else if (brugerValg == (int)MenuValg.Søg)
             {
                 Console.WriteLine("Søgning ikke implementeret endnu.");
             }
+
             /*Brugervalg - vis - */
             else if (brugerValg == (int)MenuValg.Vis)
             {
 
                 besøgende.PrintBesøgende();
             }
+
+            /*Brugervalg - afslut program*/
             else if (brugerValg == (int)MenuValg.afslutProgram)
             {
                 Console.WriteLine("Programmet afsluttes");
                 kørProgram = false;
             }
+            /*Ugyldigt valg */
             else
             {
                 Console.WriteLine("Ugyldigt valg.");
@@ -89,3 +94,14 @@ class Styring
         }
     }
 }
+
+/*
+Husk at jeg er ved at lave et mødesystem. 
+Når der oprettes en bruger, så skal jeg bestemme om de er normal person, eller sekretær osv.
+På den måde så kan jeg lave noget nedarvning
+
+Så kan jeg lave en "opret møde" knap. 
+
+Hvis mødet bliver lavet udenfor åben tid eller over en grænse, så afbryd. 
+
+*/

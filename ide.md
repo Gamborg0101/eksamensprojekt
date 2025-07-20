@@ -3,6 +3,33 @@
 Programmet er en logbog og registrering af personer i en given bygning.
 Når en person kommer, skal de skrive sig op, de skal beskrive hvad de skal, og hvilket tidsrum de er i bygningen.
 
+# Eksempel på programflow
+
+Opret tidsregistrering
+
+- Skriv navn
+- Skriv formål
+- Skriv rolle (Definer hvor lang tid man må booke) (besøgende, tekniker, underviser og rengøring)
+- Skriv start mødetid (00, 15, 30, 45)
+- Skriv slut mødetid (00, 15, 30, 45)
+
+Søg på besøgende navn
+
+- Skriv navn
+- Få formål, rolle, mødetid.
+
+Vis alle
+
+- Viser alle besøgende først
+- Viser alle medarbejderere
+
+Slut program
+
+# Ting man kunne lave bedre
+
+Slette knap
+Opdatering af møder
+
 ### Eksempel på data på bruger:
 
 Id: 1.
@@ -32,31 +59,31 @@ Lav en "besogende" klasse
 - starttidspunkt
 - sluttidspunkt
 - Skal laves i en liste
-- max 4 timer for besogende
+- max 4 times møder
 - Alle besøgende skal indsættes i en liste (2d)
+
+Lav en "medarbejder" klasse
+
+- Medarbejdertype 1, 2 eller 3
+  Type 1: besøgemde - 4 timers møder
+  Type 2: tekniker - 2 timers møder
+  Type 3: lærer - 5 timers møde
+  Type 4: Rengøring - 1 times møde
+
+- Medarbejder-klasse: arver fra besøgende, ekstra type (2, 3 og 4).
 
 Lav en styreklasse (alt styring)
 
 - Styreklasse: menu, tilføj person, søg person, vis liste
-- Du kan vise en menu: "1. Tilføj person", "2. Søg person", "3. Vis alle",
+- Du kan vise en menu: "1. Tilføj person", "2. Søg person", "3. Vis alle", "4. Lav møde", "5. Afslut program"
 - Kald lav besogende klasse
 - Hent besogende metode
 - Lav en "sogning" metode
 - Håndter inputs - så f.eks. når der oprettes en bruger osv.
 - Håndter menuvalg - så f.eks. når bruger trykker 1, 2 eller 3 - så gør x.
-- Metode der viser hvor længe en person er i bygningen (sluttid - starttid) - hvis overgået, så afvis. 
-- SøgPerson(navn) metode -> returner den første eller flere personer. 
+- Metode der viser hvor længe en person er i bygningen (sluttid - starttid) - hvis overgået, så afvis.
+- SøgPerson(navn) metode -> returner den første eller flere personer.
 - SorterEfterDato -> brug List.Sort() med CompareTo() på tidspunktet (måske)
-
-Lav en "medarbejder" klasse
-- Medarbejdertype 1, 2 eller 3
-Type 1: tekniker - adgang hele døgnet 
-Type 2: lærer - kun mellem 06:00-18:00 
-Type 3: Rengøring - kun mellem 06:00-18:00
-- Forevigt booking for medarbejder
-- Alle medarbejdere skal indsættes i en liste (2d)
-- Medarbejder-klasse: arver fra besøgende, ekstra type (1,2,3), ingen tidsbegrænsning (så vi kan genbruge felter og bruge abstraktion)
-
 
 ### Fokuser på:
 
