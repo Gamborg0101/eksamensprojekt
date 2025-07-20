@@ -2,18 +2,32 @@ class Styring
 {
     private Besøgende besøgende = new Besøgende();
 
+
+    /*Enums for at undgå magic numbers*/
+    /*Converteres til int, så det svarer til brugerens indtastning*/
+    enum MenuValg
+    {
+        Tilføj = 1,
+        Søg = 2,
+        Vis = 3
+    }
+
+
     public void StartProgram()
     {
+        /*Variabler vi bruger*/
         int antalMenupunkter = 3;
         string[] menupunter = { "Tilføj person", "Søg person", "Vis alle" };
 
+        /* Iterer over menupunkter i array */
         for (int n = 0; n < antalMenupunkter; n++)
         {
             Console.WriteLine($"{n + 1}. {menupunter[n]}");
         }
+        /*Brugervalg - tilføj - */
         int brugerValg = Convert.ToInt32(Console.ReadLine());
 
-        if (brugerValg == 1)
+        if (brugerValg == (int)MenuValg.Tilføj)
         {
             Console.Write("Hvad hedder den besøgende: ");
             string navn = Console.ReadLine();
@@ -27,20 +41,21 @@ class Styring
             Console.Write("Hvad er grunden for besøget? ");
             string begrundelse = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(begrundelse) || begrundelse.Length < 5)
+            if (begrundelse == "" || begrundelse.Length < 5)
             {
                 Console.WriteLine("Begrundelsen skal mindst være 5 bogstaver.");
                 return;
             }
-
-            besøgende.OpretBesøgende(navn, begrundelse);
+            besøgende.OpretBesøgende(navn, begrundelse); //Opretter person besøgende objekt.
             Console.WriteLine("Besøgende tilføjet.");
         }
-        else if (brugerValg == 2)
+        /*Brugervalg - søg - */
+        else if (brugerValg == (int)MenuValg.Søg)
         {
             Console.WriteLine("Søgning ikke implementeret endnu.");
         }
-        else if (brugerValg == 3)
+        /*Brugervalg - vis - */
+        else if (brugerValg == (int)MenuValg.Vis)
         {
             besøgende.PrintBesøgende();
         }
