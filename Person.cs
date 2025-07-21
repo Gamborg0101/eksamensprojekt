@@ -6,6 +6,7 @@ class Person
     public DateTime Starttidspunkt { get; set; }
     public DateTime Sluttidspunkt { get; set; }
 
+    /*Constructor*/
     public Person() { }
 
     public Person(string name, string begrunelse, DateTime starttidspunkt, DateTime sluttidspunkt)
@@ -14,10 +15,5 @@ class Person
         Begrundelse = begrunelse;
         Starttidspunkt = starttidspunkt;
         Sluttidspunkt = sluttidspunkt;
-    }
-
-    public void PrintPerson()
-    {
-        Console.WriteLine($"Navn: {Name} og id: {Id}");
     }
 }

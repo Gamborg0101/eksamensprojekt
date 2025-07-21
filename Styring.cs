@@ -66,7 +66,6 @@ class Styring
 
                 besøgende.PrintBesøgende();
             }
-
             /*Brugervalg - afslut program*/
             else if (brugerValg == (int)MenuValg.AfslutProgram)
             {

@@ -13,9 +13,12 @@ class Besøgende
 
   public void PrintBesøgende()
   {
-    foreach (Person n in BesøgendeListe)
+    foreach (Person individuel in BesøgendeListe)
     {
-      Console.WriteLine(n.Name);
+      Console.WriteLine("Navn: " + individuel.Name);
+      Console.WriteLine("Begrundelse: " + individuel.Begrundelse);
+      Console.WriteLine("Starttidspunkt: " + individuel.Starttidspunkt.ToString("dd-MM-yyyy HH:mm:ss"));
+      Console.WriteLine("Sluttidspunkt: " + individuel.Sluttidspunkt.ToString("dd-MM-yyyy HH:mm:ss"));
     }
   }
 }
