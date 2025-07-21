@@ -8,10 +8,12 @@ class Person
 
     public Person() { }
 
-    public Person(string name, string begrunelse)
+    public Person(string name, string begrunelse, DateTime starttidspunkt, DateTime sluttidspunkt)
     {
         Name = name;
         Begrundelse = begrunelse;
+        Starttidspunkt = starttidspunkt;
+        Sluttidspunkt = sluttidspunkt;
     }
 
     public void PrintPerson()

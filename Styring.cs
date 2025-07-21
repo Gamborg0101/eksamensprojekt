@@ -1,3 +1,5 @@
+using System.Collections;
+
 class Styring
 {
     private Besøgende besøgende = new Besøgende();
@@ -10,7 +12,7 @@ class Styring
         Tilføj = 1,
         Søg = 2,
         Vis = 3,
-        afslutProgram = 4
+        AfslutProgram = 4
     }
 
     public void StartProgram()
@@ -18,53 +20,38 @@ class Styring
         bool kørProgram = true;
         while (kørProgram)
         {
-            /*Variabler der bruges*/
-            string[] menupunter = { "Tilføj person", "Søg person", "Vis alle", "Afslut program" };
+            /*Menupunkter der bruges*/
+            string[] menupunkter = { "Tilføj person", "Søg person", "Vis alle", "Afslut program" };
+            Menupunkter.LavMenupunkter(menupunkter);
 
-            /* Iterer over menupunkter i array */
-            for (int n = 0; n < menupunter.Length; n++)
-            {
-                Console.WriteLine($"{n + 1}. {menupunter[n]}");
-            }
             /*Brugervalg - tilføj - navn */
             int brugerValg = Convert.ToInt32(Console.ReadLine());
 
             if (brugerValg == (int)MenuValg.Tilføj)
             {
-                /*Navn værdi laves*/
+                /*Brugervalg - tilføj - navn */
                 Console.Write("Hvad hedder den besøgende: ");
                 string navn = Console.ReadLine();
-
-                if (navn == "" || navn.Length < 2)
-                {
-                    Console.WriteLine("Navnet skal mindst være 2 bogstaver.");
-                    return;
-                }
+                InputKontrol.NavnKontrol(navn);
 
                 /*Brugervalg - tilføj - begrundelse */
-                int counter = 3;
-                for (int n = 0; n < 3; n++)
-                {
-                    Console.WriteLine("Hvad er grunden for besøgt?");
-                    string begrundelse = Console.ReadLine();
+                Console.WriteLine("Hvad er grunden for besøgt?");
+                string begrundelse = Console.ReadLine();
+                InputKontrol.BegrundelsesKontrol(begrundelse);
 
-                    if (begrundelse == "" || begrundelse.Length < 5)
-                    {
-                        counter--;
-                        Console.WriteLine($"Forkert, du har {counter} forsøg tilbage");
+                /*Brugervalg - tilføj - starttidspunkt*/
+                Console.WriteLine("Hvad er starttidspunktet? (f.eks. 12:00 eller 13:15) - kun incrementer af 15 minutter");
+                DateTime starttidspunkt = Convert.ToDateTime(Console.ReadLine());
+                InputKontrol.TidsKontrol(starttidspunkt);
 
-                        if (counter == 0)
-                        {
-                            Console.WriteLine("Du har ikke flere forsøg");
-                        }
-                    }
-                    else
-                    {
-                        besøgende.OpretBesøgende(navn, begrundelse); //Opretter person besøgende objekt.
-                        Console.WriteLine("Besøgende tilføjet. \n");
-                        break;
-                    }
-                }
+                /*Brugervalg - tilføj - sluttidspunkt*/
+                Console.WriteLine("Hvad er sluttidspunktet? (f.eks. 12:00 eller 13:15) - kun incrementer af 15 minutter");
+                DateTime sluttidspunkt = Convert.ToDateTime(Console.ReadLine());
+                InputKontrol.TidsKontrol(sluttidspunkt);
+
+                /*Opretter besøgende*/
+                besøgende.OpretBesøgende(navn, begrundelse, starttidspunkt, sluttidspunkt); //Opretter person besøgende objekt.
+                Console.WriteLine("Besøgende tilføjet. \n");
             }
 
             /*Brugervalg - søg - */
@@ -81,7 +68,7 @@ class Styring
             }
 
             /*Brugervalg - afslut program*/
-            else if (brugerValg == (int)MenuValg.afslutProgram)
+            else if (brugerValg == (int)MenuValg.AfslutProgram)
             {
                 Console.WriteLine("Programmet afsluttes");
                 kørProgram = false;
