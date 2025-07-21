@@ -16,6 +16,7 @@ class Besøgende
     foreach (Person individuel in BesøgendeListe)
     {
       Console.Write("\n");
+      Console.WriteLine("Id: " + individuel.Id);
       Console.WriteLine("Navn: " + individuel.Name);
       Console.WriteLine("Begrundelse: " + individuel.Begrundelse);
       Console.WriteLine("Starttidspunkt: " + individuel.Starttidspunkt.ToString("dd-MM-yyyy HH:mm:ss"));

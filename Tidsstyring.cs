@@ -22,7 +22,5 @@ class Tidsstyring
             return false;
         }
         return true;
-
     }
-
 }
