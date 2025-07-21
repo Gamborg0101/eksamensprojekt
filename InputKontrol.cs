@@ -1,5 +1,7 @@
 class InputKontrol
 {
+
+    /*Kontroller navn input*/
     public static void NavnKontrol(string navn)
     {
         if (navn == "" || navn.Length < 2)
@@ -8,6 +10,8 @@ class InputKontrol
             return;
         }
     }
+
+    /*Kontroller begrundelse input og giver brugeren 3 forsøg*/
     public static void BegrundelsesKontrol(string begrundelse)
     {
         int counter = 3;
@@ -25,11 +29,8 @@ class InputKontrol
             }
         }
     }
-    public static void TidsKontrol(DateTime tidspunkt)
-    {
-        if (!Tidsstyring.KvarterKontrol(tidspunkt))
-        {
-            Console.WriteLine("Du kan kun skrive minuttidspunkterne 00, 15, 30 og 45");
-        }
-    }
+
+
+
+
 }

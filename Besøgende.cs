@@ -15,10 +15,12 @@ class Besøgende
   {
     foreach (Person individuel in BesøgendeListe)
     {
+      Console.Write("\n");
       Console.WriteLine("Navn: " + individuel.Name);
       Console.WriteLine("Begrundelse: " + individuel.Begrundelse);
       Console.WriteLine("Starttidspunkt: " + individuel.Starttidspunkt.ToString("dd-MM-yyyy HH:mm:ss"));
       Console.WriteLine("Sluttidspunkt: " + individuel.Sluttidspunkt.ToString("dd-MM-yyyy HH:mm:ss"));
+      Console.Write("\n");
     }
   }
 }

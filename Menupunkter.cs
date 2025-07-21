@@ -8,4 +8,6 @@ class Menupunkter
             Console.WriteLine($"{n + 1}. {menupunkter[n]}");
         }
     }
+
+
 }

@@ -42,12 +42,17 @@ class Styring
                 /*Brugervalg - tilføj - starttidspunkt*/
                 Console.WriteLine("Hvad er starttidspunktet? (f.eks. 12:00 eller 13:15) - kun incrementer af 15 minutter");
                 DateTime starttidspunkt = Convert.ToDateTime(Console.ReadLine());
-                InputKontrol.TidsKontrol(starttidspunkt);
+                Tidsstyring.TidsKontrol(starttidspunkt);
 
                 /*Brugervalg - tilføj - sluttidspunkt*/
                 Console.WriteLine("Hvad er sluttidspunktet? (f.eks. 12:00 eller 13:15) - kun incrementer af 15 minutter");
                 DateTime sluttidspunkt = Convert.ToDateTime(Console.ReadLine());
-                InputKontrol.TidsKontrol(sluttidspunkt);
+                Tidsstyring.TidsKontrol(sluttidspunkt);
+
+                if (!Tidsstyring.StartogSlutTidspunkt(starttidspunkt, sluttidspunkt))
+                {
+                    return;
+                }
 
                 /*Opretter besøgende*/
                 besøgende.OpretBesøgende(navn, begrundelse, starttidspunkt, sluttidspunkt); //Opretter person besøgende objekt.
@@ -84,10 +89,9 @@ class Styring
 /*
 Husk at jeg er ved at lave et mødesystem. 
 Når der oprettes en bruger, så skal jeg bestemme om de er normal person, eller sekretær osv.
-På den måde så kan jeg lave noget nedarvning
+På den måde så kan jeg lave noget nedarvning.
 
 Så kan jeg lave en "opret møde" knap. 
 
 Hvis mødet bliver lavet udenfor åben tid eller over en grænse, så afbryd. 
-
 */
