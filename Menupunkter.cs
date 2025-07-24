@@ -8,6 +8,11 @@ class Menupunkter
             Console.WriteLine($"{n + 1}. {menupunkter[n]}");
         }
     }
-
-
+    public static void LavArbejdstitelPunkter(string[] ArbejdsTitelPunkter)
+    {
+        for (int i = 0; i < ArbejdsTitelPunkter.Length; i++)
+        {
+            Console.WriteLine($"{i + 1}) {ArbejdsTitelPunkter[i]}");
+        }
+    }
 }

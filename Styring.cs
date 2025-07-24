@@ -24,28 +24,25 @@ class Styring
 
     public void StartProgram()
     {
+        /*Initialisering af arrays og objekt*/
+        string[] arbejdsTitler = { "Udefrakommende", "Medarbejder" };
+        string[] menupunkter = { "Tilføj person", "Søg person", "Vis alle", "Afslut program" };
+
         bool kørProgram = true;
         while (kørProgram)
         {
-            /*Menupunkter der bruges*/
-            string[] menupunkter = { "Tilføj person", "Søg person", "Vis alle", "Afslut program" };
+            /*Menupunkterne laves*/
             Menupunkter.LavMenupunkter(menupunkter);
 
-            string[] arbejdsTitler = { "Udefrakommende", "Medarbejder" };
-
-            Person person = null;
-
-            /*Brugervalg - tilføj - navn */
+            /*Brugervalg - tilføj - menuvalg */
             int brugerValg = Convert.ToInt32(Console.ReadLine());
 
             if (brugerValg == (int)MenuValg.Tilføj)
             {
+                Person person = null;
                 /*Defination af arbejdstitel*/
                 Console.WriteLine("Hvilken titel har personen?");
-                for (int i = 0; i < arbejdsTitler.Length; i++)
-                {
-                    Console.WriteLine($"{i + 1}) {arbejdsTitler[i]}");
-                }
+                Menupunkter.LavArbejdstitelPunkter(arbejdsTitler);
                 int titelValg = Convert.ToInt32(Console.ReadLine());
 
                 if (titelValg == (int)ArbejdsTitler.Besøgende)
@@ -64,7 +61,6 @@ class Styring
                 InputKontrol.NavnKontrol(navn);
                 person.Name = navn;
 
-
                 /*Brugervalg - tilføj - begrundelse */
                 Console.WriteLine("Hvad er grunden for besøgt?");
                 string begrundelse = Console.ReadLine();
@@ -75,18 +71,21 @@ class Styring
                 Console.WriteLine("Hvad er starttidspunktet? (f.eks. 12:00 eller 13:15) - kun incrementer af 15 minutter");
                 DateTime starttidspunkt = Convert.ToDateTime(Console.ReadLine());
                 Tidsstyring.TidsKontrol(starttidspunkt);
+                person.Starttidspunkt = starttidspunkt;
 
                 /*Brugervalg - tilføj - sluttidspunkt*/
                 Console.WriteLine("Hvad er sluttidspunktet? (f.eks. 12:00 eller 13:15) - kun incrementer af 15 minutter");
                 DateTime sluttidspunkt = Convert.ToDateTime(Console.ReadLine());
                 Tidsstyring.TidsKontrol(sluttidspunkt);
+                person.Sluttidspunkt = sluttidspunkt;
 
+                /*Kontrollere om starttidspunktet er tidligere end sluttidspunktet*/
                 if (!Tidsstyring.StartogSlutTidspunkt(starttidspunkt, sluttidspunkt))
                 {
                     Console.WriteLine("Starttidspunktet er senere en sluttidspunktet");
                     return;
                 }
-
+                /*Tjekker om mødetiden overskredet i forhold til deres tilladte mødetid*/
                 if (!person.TjekMødeTid(starttidspunkt, sluttidspunkt))
                 {
                     Console.WriteLine($"Mødetid overskrider max tilladt tid på {person.maxMødeTid} timer.");
@@ -94,8 +93,9 @@ class Styring
                 }
 
                 /*Opretter besøgende*/
-                besøgende.OpretBesøgende(person); //Opretter person besøgende objekt.
+                besøgende.OpretBesøgende(person); // Tilføjer personen til listen over besøgende (kan være Medarbejder eller Udefrakommende)
                 Console.WriteLine("Besøgende tilføjet. \n");
+
             }
 
             /*Brugervalg - søg - */
@@ -107,7 +107,6 @@ class Styring
             /*Brugervalg - vis - */
             else if (brugerValg == (int)MenuValg.Vis)
             {
-
                 besøgende.PrintBesøgende();
             }
             /*Brugervalg - afslut program*/

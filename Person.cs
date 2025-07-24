@@ -13,7 +13,11 @@ class Person
 
 
     /*Constructor*/
-    public Person() { }
+    public Person()
+    {
+        Id = IdGenerator();
+        maxMødeTid = 0; // fx 1 time som standard
+    }
 
     /*Custom constructor*/
     public Person(string name, string begrunelse, DateTime starttidspunkt, DateTime sluttidspunkt)
@@ -32,7 +36,7 @@ class Person
         return currentId++;
     }
 
-    /*Tjekker om mødetiden overskirde*/
+    /*Tjekker om mødetiden overskredet i forhold til deres tilladte mødetid*/
     public virtual bool TjekMødeTid(DateTime start, DateTime slut)
     {
         TimeSpan diff = slut - start;
