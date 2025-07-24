@@ -15,6 +15,13 @@ class Styring
         AfslutProgram = 4
     }
 
+
+    enum ArbejdsTitler
+    {
+        Besøgende = 1,
+        Medarbejder = 2,
+    }
+
     public void StartProgram()
     {
         bool kørProgram = true;
@@ -24,20 +31,45 @@ class Styring
             string[] menupunkter = { "Tilføj person", "Søg person", "Vis alle", "Afslut program" };
             Menupunkter.LavMenupunkter(menupunkter);
 
+            string[] arbejdsTitler = { "Udefrakommende", "Medarbejder" };
+
+            Person person = null;
+
             /*Brugervalg - tilføj - navn */
             int brugerValg = Convert.ToInt32(Console.ReadLine());
 
             if (brugerValg == (int)MenuValg.Tilføj)
             {
+                /*Defination af arbejdstitel*/
+                Console.WriteLine("Hvilken titel har personen?");
+                for (int i = 0; i < arbejdsTitler.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}) {arbejdsTitler[i]}");
+                }
+                int titelValg = Convert.ToInt32(Console.ReadLine());
+
+                if (titelValg == (int)ArbejdsTitler.Besøgende)
+                    person = new Besøgende();
+                else if (titelValg == (int)ArbejdsTitler.Medarbejder)
+                    person = new Medarbejder();
+                else
+                {
+                    Console.WriteLine("Ugyldigt titelvalg.");
+                    return;
+                }
+
                 /*Brugervalg - tilføj - navn */
                 Console.Write("Hvad hedder den besøgende: ");
                 string navn = Console.ReadLine();
                 InputKontrol.NavnKontrol(navn);
+                person.Name = navn;
+
 
                 /*Brugervalg - tilføj - begrundelse */
                 Console.WriteLine("Hvad er grunden for besøgt?");
                 string begrundelse = Console.ReadLine();
                 InputKontrol.BegrundelsesKontrol(begrundelse);
+                person.Begrundelse = begrundelse;
 
                 /*Brugervalg - tilføj - starttidspunkt*/
                 Console.WriteLine("Hvad er starttidspunktet? (f.eks. 12:00 eller 13:15) - kun incrementer af 15 minutter");
@@ -51,11 +83,18 @@ class Styring
 
                 if (!Tidsstyring.StartogSlutTidspunkt(starttidspunkt, sluttidspunkt))
                 {
+                    Console.WriteLine("Starttidspunktet er senere en sluttidspunktet");
+                    return;
+                }
+
+                if (!person.TjekMødeTid(starttidspunkt, sluttidspunkt))
+                {
+                    Console.WriteLine($"Mødetid overskrider max tilladt tid på {person.maxMødeTid} timer.");
                     return;
                 }
 
                 /*Opretter besøgende*/
-                besøgende.OpretBesøgende(navn, begrundelse, starttidspunkt, sluttidspunkt); //Opretter person besøgende objekt.
+                besøgende.OpretBesøgende(person); //Opretter person besøgende objekt.
                 Console.WriteLine("Besøgende tilføjet. \n");
             }
 
@@ -85,13 +124,3 @@ class Styring
         }
     }
 }
-
-/*
-Husk at jeg er ved at lave et mødesystem. 
-Når der oprettes en bruger, så skal jeg bestemme om de er normal person, eller sekretær osv.
-På den måde så kan jeg lave noget nedarvning.
-
-Så kan jeg lave en "opret møde" knap. 
-
-Hvis mødet bliver lavet udenfor åben tid eller over en grænse, så afbryd. 
-*/

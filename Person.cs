@@ -9,9 +9,21 @@ class Person
     public string Begrundelse { get; set; }
     public DateTime Starttidspunkt { get; set; }
     public DateTime Sluttidspunkt { get; set; }
+    public int maxMødeTid { get; set; }
+
 
     /*Constructor*/
     public Person() { }
+
+    /*Custom constructor*/
+    public Person(string name, string begrunelse, DateTime starttidspunkt, DateTime sluttidspunkt)
+    {
+        Id = IdGenerator();
+        Name = name;
+        Begrundelse = begrunelse;
+        Starttidspunkt = starttidspunkt;
+        Sluttidspunkt = sluttidspunkt;
+    }
 
     private static int currentId = 1;
 
@@ -20,13 +32,11 @@ class Person
         return currentId++;
     }
 
-    public Person(string name, string begrunelse, DateTime starttidspunkt, DateTime sluttidspunkt)
+    /*Tjekker om mødetiden overskirde*/
+    public virtual bool TjekMødeTid(DateTime start, DateTime slut)
     {
-        Id = IdGenerator();
-        Name = name;
-        Begrundelse = begrunelse;
-        Starttidspunkt = starttidspunkt;
-        Sluttidspunkt = sluttidspunkt;
-
+        TimeSpan diff = slut - start;
+        Console.WriteLine(diff.Hours);
+        return diff.TotalHours <= maxMødeTid;
     }
 }

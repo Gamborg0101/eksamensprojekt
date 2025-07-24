@@ -1,14 +1,17 @@
-class Besøgende
+class Besøgende : Person
 {
 
   private List<Person> BesøgendeListe = new List<Person>();
 
   //Constructor
-  public Besøgende() { }
-
-  public void OpretBesøgende(string navn, string begrundelse, DateTime starttid, DateTime sluttid)
+  public Besøgende()
   {
-    BesøgendeListe.Add(new Person(navn, begrundelse, starttid, sluttid));
+    maxMødeTid = 1;
+  }
+
+  public void OpretBesøgende(Person person)
+  {
+    BesøgendeListe.Add(person);
   }
 
   public void PrintBesøgende()
