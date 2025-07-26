@@ -16,7 +16,7 @@ class Person
     public Person()
     {
         Id = IdGenerator();
-        maxMødeTid = 0; // fx 1 time som standard
+        maxMødeTid = 1; /*Kan som minimum booke én time*/
     }
 
     /*Custom constructor*/
@@ -29,7 +29,7 @@ class Person
         Sluttidspunkt = sluttidspunkt;
     }
 
-    private static int currentId = 1;
+    private static int currentId = 0;
 
     public static int IdGenerator()
     {
