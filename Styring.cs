@@ -35,9 +35,18 @@ class Styring
             Menupunkter.LavMenupunkter(menupunkter);
 
             /*Brugervalg - tilføj - menuvalg */
-            int brugerValg = Convert.ToInt32(Console.ReadLine());
+            int menupunktValg;
+            try
+            {
+                menupunktValg = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Skriv et gyldigt tal.");
+                continue;
+            }
 
-            if (brugerValg == (int)MenuValg.Tilføj)
+            if (menupunktValg == (int)MenuValg.Tilføj)
             {
                 Person person = null;
                 /*Defination af arbejdstitel*/
@@ -45,10 +54,16 @@ class Styring
                 Menupunkter.LavArbejdstitelPunkter(arbejdsTitler);
                 int titelValg = Convert.ToInt32(Console.ReadLine());
 
+
+                /*TRYCATCH PÅ titleValg*/
                 if (titelValg == (int)ArbejdsTitler.Besøgende)
+                {
                     person = new Besøgende();
+                }
                 else if (titelValg == (int)ArbejdsTitler.Medarbejder)
+                {
                     person = new Medarbejder();
+                }
                 else
                 {
                     Console.WriteLine("Ugyldigt titelvalg.");
@@ -99,18 +114,18 @@ class Styring
             }
 
             /*Brugervalg - søg - */
-            else if (brugerValg == (int)MenuValg.Søg)
+            else if (menupunktValg == (int)MenuValg.Søg)
             {
                 Console.WriteLine("Søgning ikke implementeret endnu.");
             }
 
             /*Brugervalg - vis - */
-            else if (brugerValg == (int)MenuValg.Vis)
+            else if (menupunktValg == (int)MenuValg.Vis)
             {
                 besøgende.PrintBesøgende();
             }
             /*Brugervalg - afslut program*/
-            else if (brugerValg == (int)MenuValg.AfslutProgram)
+            else if (menupunktValg == (int)MenuValg.AfslutProgram)
             {
                 Console.WriteLine("Programmet afsluttes");
                 kørProgram = false;
@@ -119,6 +134,7 @@ class Styring
             else
             {
                 Console.WriteLine("Ugyldigt valg.");
+                continue;
             }
         }
     }
