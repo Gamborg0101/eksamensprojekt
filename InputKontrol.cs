@@ -1,6 +1,5 @@
 class InputKontrol
 {
-
     /*Kontroller navn input*/
     public static void NavnKontrol(string navn)
     {
@@ -29,8 +28,26 @@ class InputKontrol
             }
         }
     }
+    /*Kontrollere Titel input og giver brugeren 3 forsøg*/
+    public static int TitelKontrol()
+    {
+        int counter = 3;
 
+        for (int n = 0; n < 3; n++)
+        {
+            string titelValg = Console.ReadLine();
+            bool triedParse = int.TryParse(titelValg, out int parsedValue);
 
-
-
+            if (triedParse && (parsedValue == 1 || parsedValue == 2))
+            {
+                return parsedValue;
+            }
+            else
+            {
+                counter--;
+                Console.WriteLine($"Ugyldigt input. Du har {counter} forsøg tilbage.");
+            }
+        }
+        throw new Exception("Du har opbrugt dine forsøg.");
+    }
 }

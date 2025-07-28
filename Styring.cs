@@ -2,11 +2,7 @@ using System.Collections;
 
 class Styring
 {
-    private Besøgende besøgende = new Besøgende();
-
-    /*Enums for at undgå magic numbers*/
-    /*Converteres til int, så det svarer til brugerens indtastning*/
-    /*Tiløj = 1 - ændrer enum'ets værdi, så det ikke starter fra 0*/
+    Besøgende besøgende = new Besøgende();
     enum MenuValg
     {
         Tilføj = 1,
@@ -14,7 +10,6 @@ class Styring
         Vis = 3,
         AfslutProgram = 4
     }
-
 
     enum ArbejdsTitler
     {
@@ -52,10 +47,8 @@ class Styring
                 /*Defination af arbejdstitel*/
                 Console.WriteLine("Hvilken titel har personen?");
                 Menupunkter.LavArbejdstitelPunkter(arbejdsTitler);
-                int titelValg = Convert.ToInt32(Console.ReadLine());
+                int titelValg = InputKontrol.TitelKontrol();
 
-
-                /*TRYCATCH PÅ titleValg*/
                 if (titelValg == (int)ArbejdsTitler.Besøgende)
                 {
                     person = new Besøgende();

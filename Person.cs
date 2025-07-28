@@ -10,7 +10,7 @@ class Person
     public DateTime Starttidspunkt { get; set; }
     public DateTime Sluttidspunkt { get; set; }
     public int maxMødeTid { get; set; }
-
+    private static int currentId = 0;
 
     /*Constructor*/
     public Person()
@@ -28,8 +28,6 @@ class Person
         Starttidspunkt = starttidspunkt;
         Sluttidspunkt = sluttidspunkt;
     }
-
-    private static int currentId = 0;
 
     public static int IdGenerator()
     {
