@@ -48,7 +48,7 @@ class Styring
                 /*Defination af arbejdstitel*/
                 Console.WriteLine("Hvilken titel har personen?");
                 Menupunkter.LavArbejdstitelPunkter(arbejdsTitler);
-                int titelValg = InputKontrol.TitelKontrol();
+                int titelValg = InputKontrol.TitelKontrol(); //Eller dette?
 
 
                 // try
@@ -76,8 +76,6 @@ class Styring
                 }
 
                 /*Brugervalg - tilføj - navn */
-                // string navn = Console.ReadLine();
-                // InputKontrol.NavnKontrol(navn);
                 string navn = InputKontrol.NavnKontrol();
                 person.Name = navn;
 
