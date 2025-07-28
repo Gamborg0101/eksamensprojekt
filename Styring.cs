@@ -1,4 +1,5 @@
 using System.Collections;
+using System.ComponentModel;
 
 class Styring
 {
@@ -49,6 +50,17 @@ class Styring
                 Menupunkter.LavArbejdstitelPunkter(arbejdsTitler);
                 int titelValg = InputKontrol.TitelKontrol();
 
+
+                // try
+                // {
+                //     titelValg = Convert.ToInt32(Console.ReadLine());
+                // }
+                // catch
+                // {
+                //     Console.WriteLine("Skriv et gyldigt tal.");
+                //     continue;
+                // }
+
                 if (titelValg == (int)ArbejdsTitler.Besøgende)
                 {
                     person = new Besøgende();
@@ -64,9 +76,9 @@ class Styring
                 }
 
                 /*Brugervalg - tilføj - navn */
-                Console.Write("Hvad hedder den besøgende: ");
-                string navn = Console.ReadLine();
-                InputKontrol.NavnKontrol(navn);
+                // string navn = Console.ReadLine();
+                // InputKontrol.NavnKontrol(navn);
+                string navn = InputKontrol.NavnKontrol();
                 person.Name = navn;
 
                 /*Brugervalg - tilføj - begrundelse */

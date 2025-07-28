@@ -1,13 +1,27 @@
 class InputKontrol
 {
     /*Kontroller navn input*/
-    public static void NavnKontrol(string navn)
+    public static string NavnKontrol()
     {
-        if (navn == "" || navn.Length < 2)
+        int counter = 3;
+
+        for (int n = 0; n < 3; n++)
         {
-            Console.WriteLine("Navnet skal mindst være 2 bogstaver.");
-            return;
+            Console.Write("Hvad hedder den besøgende: ");
+            string navn = Console.ReadLine();
+
+            if (navn.Length >= 2)
+            {
+                return navn;
+            }
+            else
+            {
+                counter--;
+                Console.WriteLine("Navnet skal mindst være 2 bogstaver.");
+                Console.WriteLine($"Du har {counter} forsøg tilbage");
+            }
         }
+        throw new Exception("Du har opbrugt dine forsøg.");
     }
 
     /*Kontroller begrundelse input og giver brugeren 3 forsøg*/
@@ -28,11 +42,11 @@ class InputKontrol
             }
         }
     }
+
     /*Kontrollere Titel input og giver brugeren 3 forsøg*/
     public static int TitelKontrol()
     {
         int counter = 3;
-
         for (int n = 0; n < 3; n++)
         {
             string titelValg = Console.ReadLine();
