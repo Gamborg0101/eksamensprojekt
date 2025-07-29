@@ -1,9 +1,10 @@
 class Tidsstyring
 {
+    
     /*Tjekker */
     public static bool KvarterKontrol(DateTime tidspunkt)
     {
-        return tidspunkt.Minute == 0 || tidspunkt.Minute == 15 || tidspunkt.Minute == 30 || tidspunkt.Minute == 45;
+        return tidspunkt.Minute % 15 == 0;
     }
     /*Kontrollere om tidspunktet er delbart med 15, så der kun kan laves tidspunkter med 15 minutters incrementer*/
     public static void TidsKontrol(DateTime tidspunkt)

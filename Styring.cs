@@ -1,9 +1,8 @@
-using System.Collections;
-using System.ComponentModel;
+using Folk;
 
 class Styring
 {
-    Besøgende besøgende = new Besøgende();
+    private readonly Besøgende besøgende = new Besøgende(); //Læs op på Readonly - kan ikke blive re-initialisered
     enum MenuValg
     {
         Tilføj = 1,
@@ -27,10 +26,10 @@ class Styring
         bool kørProgram = true;
         while (kørProgram)
         {
-            /*Menupunkterne laves*/
+            // Menupunkterne laves
             Menupunkter.LavMenupunkter(menupunkter);
 
-            /*Brugervalg - tilføj - menuvalg */
+            // Brugervalg - tilføj - menuvalg
             int menupunktValg;
             try
             {
