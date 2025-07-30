@@ -1,3 +1,5 @@
+namespace eksamensprojekt;
+
 class Menupunkter
 {
     public static void LavMenupunkter(string[] menupunkter)

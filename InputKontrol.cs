@@ -1,3 +1,5 @@
+namespace eksamensprojekt;
+
 class InputKontrol
 {
     /*Kontroller navn input*/

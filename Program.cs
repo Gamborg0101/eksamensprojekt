@@ -1,4 +1,6 @@
-﻿class Program
+﻿namespace eksamensprojekt;
+
+class Program
 {
     static void Main()
     {

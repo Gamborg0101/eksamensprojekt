@@ -1,5 +1,7 @@
 using Folk;
 
+namespace eksamensprojekt;
+
 class Styring
 {
     private readonly Besøgende besøgende = new Besøgende(); //Læs op på Readonly - kan ikke blive re-initialisered
