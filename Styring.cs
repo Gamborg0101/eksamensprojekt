@@ -1,3 +1,4 @@
+using eksamensprojekt.Input;
 using Folk;
 
 namespace eksamensprojekt;
@@ -21,11 +22,24 @@ class Styring
 
     public void StartProgram()
     {
-        LavMenu StartMenu = new LavMenu(["Tilføj person", "Søg person", "Vis alle", "Afslut program"]);
-        Console.WriteLine(StartMenu.LavMenupunkter());
+        LavMenu startMenu = new LavMenu(["Tilføj person", "Søg person", "Vis alle", "Afslut program"]);
+        Console.WriteLine(startMenu.LavMenupunkter());
 
-        LavMenu Undermenu = new LavMenu(["Udefrakommende", "Medarbejder"]);
-        Console.WriteLine(Undermenu.LavMenupunkter());
+        LavMenu tilføjPersonUndermenu = new LavMenu(["Udefrakommende", "Medarbejder"]);
+        Console.WriteLine(tilføjPersonUndermenu.LavMenupunkter());
+
+        InputFortolker input1 = new InputFortolker(Console.ReadLine());
+        Console.WriteLine(input1.MenuValg());
+        
+
+
+
+        /*
+         * Tag input fortolkeren, og bearbejd det, så vi får det rigtige input i dette view
+         * if input == 1 - do this - bare lige til en start
+         */
+
+
 
 
 

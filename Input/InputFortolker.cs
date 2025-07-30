@@ -2,19 +2,16 @@ namespace eksamensprojekt.Input;
 
 public class InputFortolker
 {
-    public InputFortolker(string input)
+    public InputFortolker(string? input)
     {
         Input = input;
     }
 
-    private string Input { get; set; }
+    private string? Input { get; set; }
 
-    public void MenuValg(string brugerInput)
+    public int MenuValg()
     {
-        int menuvalg = Convert.ToInt32(brugerInput);
-        
-        
+        int menuvalg = Convert.ToInt32(Input);
+        return menuvalg;
     }
-    
-    
 }
