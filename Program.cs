@@ -6,10 +6,3 @@
         programStart.StartProgram();
     }
 }
-
-
-/*
-Mangler booking id. 
-Mangler at skrive, hvis sluttiden er lavere end starttiden, så skal den melde fejl
-
-*/
