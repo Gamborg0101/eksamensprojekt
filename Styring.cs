@@ -34,10 +34,18 @@ class Styring
             "Udefrakommende", 
             "Medarbejder"
         ]);
-        Console.WriteLine(tilføjPersonUndermenu.LavMenupunkter());
+        
+        int test = startMenu.HentInput();
+        if (test == 1)
+        {   
+            Console.WriteLine(tilføjPersonUndermenu.LavMenupunkter());
+            
+        }
+        
+        
+        
+        
 
-        LavMenu test1 = new LavMenu();
-        test1.MenuValg();
 
 
 
