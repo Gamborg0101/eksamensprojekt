@@ -22,21 +22,28 @@ class Styring
 
     public void StartProgram()
     {
-        LavMenu startMenu = new LavMenu(["Tilføj person", "Søg person", "Vis alle", "Afslut program"]);
+        LavMenu startMenu = new LavMenu([
+            "Tilføj person", 
+            "Søg person", 
+            "Vis alle", 
+            "Afslut program"
+            ]);
         Console.WriteLine(startMenu.LavMenupunkter());
 
-        LavMenu tilføjPersonUndermenu = new LavMenu(["Udefrakommende", "Medarbejder"]);
+        LavMenu tilføjPersonUndermenu = new LavMenu([
+            "Udefrakommende", 
+            "Medarbejder"
+        ]);
         Console.WriteLine(tilføjPersonUndermenu.LavMenupunkter());
 
-        InputFortolker input1 = new InputFortolker(Console.ReadLine());
-        Console.WriteLine(input1.MenuValg());
-        
+        LavMenu test1 = new LavMenu();
+        test1.MenuValg();
 
 
 
         /*
-         * Tag input fortolkeren, og bearbejd det, så vi får det rigtige input i dette view
-         * if input == 1 - do this - bare lige til en start
+         Nu får jeg returneret input1 tilbage som det korrekte menuvalg
+         Nu vil jeg gerne kunne printe teksten på det menuvalg
          */
 
 

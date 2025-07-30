@@ -16,5 +16,12 @@ class LavMenu
         }
         return nytPunkt;
     }
+    
+    private string Input { get; set; }
+    public int MenuValg()
+    {
+        int menuvalg = Convert.ToInt32(Input);
+        return menuvalg;
+    }
 
 }

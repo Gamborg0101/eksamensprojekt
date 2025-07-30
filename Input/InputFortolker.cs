@@ -7,7 +7,7 @@ public class InputFortolker
         Input = input;
     }
 
-    private string? Input { get; set; }
+    private string Input { get; set; }
 
     public int MenuValg()
     {
