@@ -1,62 +1,53 @@
 using eksamensprojekt.Input;
+using eksamensprojekt.Menu;
 using Folk;
 
 namespace eksamensprojekt;
 
 class Styring
 {
-    private readonly Besøgende besøgende = new Besøgende(); //Læs op på Readonly - kan ikke blive re-initialisered
-    enum MenuValg
-    {
-        Tilføj = 1,
-        Søg = 2,
-        Vis = 3,
-        AfslutProgram = 4
-    }
+    private readonly MenuManager startMenuManager = new MenuManager([
+        "Tilføj person",
+        "Søg person",
+        "Vis alle",
+        "Afslut program"
+    ]);
 
-    enum ArbejdsTitler
-    {
-        Besøgende = 1,
-        Medarbejder = 2,
-    }
+    private readonly MenuManager underMenu = new MenuManager([
+        "Besøgende",
+        "Medarbejder"
+    ]);
+
+    private readonly PersonManager person = new PersonManager();
 
     public void StartProgram()
     {
-        LavMenu startMenu = new LavMenu([
-            "Tilføj person", 
-            "Søg person", 
-            "Vis alle", 
-            "Afslut program"
-            ]);
-        Console.WriteLine(startMenu.LavMenupunkter());
-
-        LavMenu tilføjPersonUndermenu = new LavMenu([
-            "Udefrakommende", 
-            "Medarbejder"
-        ]);
-        
-        int test = startMenu.HentInput();
-        if (test == 1)
-        {   
-            Console.WriteLine(tilføjPersonUndermenu.LavMenupunkter());
-            
+        bool kørProgram = true;
+        while (kørProgram)
+        {
+            startMenuManager.VisMenu();
+            int valg = startMenuManager.HentIntInput();
+            switch (valg)
+            {
+                case 1:
+                    //Tilføj person
+                    underMenu.VisMenu();
+                    person.TilføjPerson(Convert.ToInt32(Console.ReadLine()));
+                    break;
+                case 2:
+                    //Søg efter person 
+                    break;
+                case 3:
+                    person.PrintBesøgende();
+                    break;
+                case 4:
+                    Console.WriteLine("Tak for denne gang");
+                    kørProgram = false;
+                    break;
+                default:
+                    Console.WriteLine("Ugyldigt valg");
+                    break;
+            }
         }
-        
-        
-        
-        
-
-
-
-
-        /*
-         Nu får jeg returneret input1 tilbage som det korrekte menuvalg
-         Nu vil jeg gerne kunne printe teksten på det menuvalg
-         */
-
-
-
-
-
     }
 }

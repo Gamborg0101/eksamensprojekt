@@ -1,12 +1,16 @@
-
-class LavMenu
+namespace eksamensprojekt.Menu;
+class MenuManager
 {
     public string[] MenuPunkt { get; set; }
     private int Input { get; set; }
-    public LavMenu(string[] menuPunkt)
+    
+    public MenuManager(string[] menuPunkt)
     {
         MenuPunkt = menuPunkt;
     }
+
+    
+    
     public string LavMenupunkter()
     {
         string nytPunkt = "";
@@ -16,13 +20,19 @@ class LavMenu
         }
         return nytPunkt;
     }
+
+    public void VisMenu()
+    {
+        Console.WriteLine(LavMenupunkter());
+    }
     
-    public int HentInput()
+    public int HentIntInput()
     {
         Console.Write("Vælg et menupunkt: ");
         Input = Convert.ToInt32(Console.ReadLine());
         return Input;
     }
+
     
     
     public int MenuValg()

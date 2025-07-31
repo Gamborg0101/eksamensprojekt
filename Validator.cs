@@ -1,52 +1,55 @@
-namespace eksamensprojekt;
+using Folk;
 
-class InputKontrol
+namespace Folk;
+
+class Validator
+
 {
     /*Kontroller navn input*/
-    public static string NavnKontrol()
+    public string NavnKontrol(string navn)
     {
         int counter = 3;
-
         for (int n = 0; n < 3; n++)
         {
-            Console.Write("Hvad hedder den besøgende: ");
-            string navn = Console.ReadLine();
-
             if (navn.Length >= 2)
             {
                 return navn;
             }
-            else
+
+            counter--;
+            Console.WriteLine($"Du har {counter} forsøg tilbage");
+            if (counter == 0)
             {
-                counter--;
                 Console.WriteLine("Navnet skal mindst være 2 bogstaver.");
-                Console.WriteLine($"Du har {counter} forsøg tilbage");
             }
         }
         throw new Exception("Du har opbrugt dine forsøg.");
     }
 
     /*Kontroller begrundelse input og giver brugeren 3 forsøg*/
-    public static void BegrundelsesKontrol(string begrundelse)
+    public string BegrundelsesKontrol(string begrundelse)
     {
         int counter = 3;
         for (int n = 0; n < 3; n++)
         {
-            if (begrundelse == "" || begrundelse.Length < 5)
+            if (begrundelse.Length >= 5)
             {
-                counter--;
-                Console.WriteLine($"Forkert, du har {counter} forsøg tilbage");
+                return begrundelse;
+            }
 
-                if (counter == 0)
-                {
-                    Console.WriteLine("Du har ikke flere forsøg");
-                }
+            counter--;
+            Console.WriteLine($"Forkert, du har {counter} forsøg tilbage");
+            if (counter == 0)
+            {
+                Console.WriteLine("Du har ikke flere forsøg");
             }
         }
+
+        throw new Exception("Du har opbrugt dine forsøg.");
     }
 
     /*Kontrollere Titel input og giver brugeren 3 forsøg*/
-    public static int TitelKontrol()
+    public int TitelKontrol()
     {
         int counter = 3;
         for (int n = 0; n < 3; n++)
@@ -58,12 +61,11 @@ class InputKontrol
             {
                 return parsedValue;
             }
-            else
-            {
-                counter--;
-                Console.WriteLine($"Ugyldigt input. Du har {counter} forsøg tilbage.");
-            }
+
+            counter--;
+            Console.WriteLine($"Ugyldigt input. Du har {counter} forsøg tilbage.");
         }
+
         throw new Exception("Du har opbrugt dine forsøg.");
     }
 }

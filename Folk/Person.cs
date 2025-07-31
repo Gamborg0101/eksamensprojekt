@@ -4,7 +4,7 @@ using System.Transactions;
 
 namespace Folk
 {
-    class Person
+    public class Person
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -12,7 +12,7 @@ namespace Folk
         public DateTime Starttidspunkt { get; set; }
         public DateTime Sluttidspunkt { get; set; }
         public int maxMødeTid { get; set; }
-        private static int currentId = 0;
+        private static int currentId = 1;
 
         /*Constructor*/
         public Person()
@@ -31,17 +31,11 @@ namespace Folk
             Sluttidspunkt = sluttidspunkt;
         }
 
-        public static int IdGenerator()
+        private static int IdGenerator()
         {
             return currentId++;
         }
 
-        /*Tjekker om mødetiden overskredet i forhold til deres tilladte mødetid*/
-        public virtual bool TjekMødeTid(DateTime start, DateTime slut)
-        {
-            TimeSpan diff = slut - start;
-            Console.WriteLine(diff.Hours);
-            return diff.TotalHours <= maxMødeTid;
-        }
+       
     }
 }
