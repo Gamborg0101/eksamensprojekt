@@ -1,4 +1,3 @@
-using eksamensprojekt.Input;
 using eksamensprojekt.Menu;
 using Folk;
 
@@ -6,43 +5,36 @@ namespace eksamensprojekt;
 
 class Styring
 {
-    private readonly MenuManager startMenuManager = new MenuManager([
+    private readonly Validator validate = new();
+    private readonly MenuManager startMenuManager = new([
         "Tilføj person",
-        "Søg person",
         "Vis alle",
         "Afslut program"
     ]);
 
-    private readonly MenuManager underMenu = new MenuManager([
+    private readonly MenuManager underMenu = new([
         "Besøgende",
         "Medarbejder"
     ]);
 
-    private readonly PersonManager person = new PersonManager();
-
+    private readonly PersonManager person = new();
     public void StartProgram()
     {
-        bool kørProgram = true;
-        while (kørProgram)
+        while (startMenuManager.StartOgStop("start"))
         {
             startMenuManager.VisMenu();
-            int valg = startMenuManager.HentIntInput();
-            switch (valg)
+            switch (validate.LæsBrugerInputInt())
             {
                 case 1:
-                    //Tilføj person
                     underMenu.VisMenu();
-                    person.TilføjPerson(Convert.ToInt32(Console.ReadLine()));
+                    person.TilføjPerson(validate.LæsBrugerInputInt());
                     break;
                 case 2:
-                    //Søg efter person 
+                    person.PrintAlle();
                     break;
                 case 3:
-                    person.PrintBesøgende();
-                    break;
-                case 4:
                     Console.WriteLine("Tak for denne gang");
-                    kørProgram = false;
+                    startMenuManager.StartOgStop("stop");
                     break;
                 default:
                     Console.WriteLine("Ugyldigt valg");

@@ -8,7 +8,7 @@ namespace Folk
     //Constructor
     public Besøgende()
     {
-      maxMødeTid = 1;
+      MaxMødeTid = 1;
     }
   }
 }

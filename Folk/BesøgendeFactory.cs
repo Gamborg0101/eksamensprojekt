@@ -1,28 +1,27 @@
-using eksamensprojekt;
+using eksamensprojekt.Input;
+using Folk;
 
-namespace Folk;
+namespace eksamensprojekt.Folk;
 
 public class BesøgendeFactory
 {
-    private readonly Validator validate = new Validator();
-    private readonly Tidsstyring tidsKontrol = new Tidsstyring();
-    public Besøgende OpretBesøgende()
+    private readonly Tidsstyring tidsKontrol = new();
+    private readonly InputHåndtering input = new();
+    private readonly Besøgende besøgende = new();
+    public Besøgende IndtastBesøgende()
     {
-        Besøgende besøgende = new Besøgende();
-        Console.Write("Besøgende navn: ");
-        besøgende.Name = validate.NavnKontrol(Console.ReadLine());
-      
-        Console.Write("Begrundelse for besøg: ");
-        besøgende.Begrundelse = validate.BegrundelsesKontrol(Console.ReadLine());;
-
-         DateTime start = tidsKontrol.FåTidVærdi("Starttid");
-         DateTime slut = tidsKontrol.FåTidVærdi("Sluttid");
-
-         besøgende.Starttidspunkt = start;
-         besøgende.Sluttidspunkt = slut;
-         
-        tidsKontrol.TjekMaxMødetid(start, slut, besøgende.maxMødeTid);
+        besøgende.Name = input.LæsNavn();
+        besøgende.Begrundelse = input.LæsBegrundelse();
+        
+        do
+        {
+            besøgende.Starttidspunkt = input.LæsStarttidspunkt();
+            besøgende.Sluttidspunkt = input.LæsSluttidspunkt();
+        } 
+        while (!tidsKontrol.StartogSlutErGyldigt(besøgende.Starttidspunkt, besøgende.Sluttidspunkt) 
+                || !tidsKontrol.TjekMaxMødetid(besøgende.Starttidspunkt, besøgende.Sluttidspunkt, besøgende.MaxMødeTid));
         Console.WriteLine($"Tilføjer besøgende - {besøgende.Name} - til besøgslisten");
+        
         return besøgende;
     }
 }

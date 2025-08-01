@@ -6,36 +6,23 @@ namespace Folk
 {
     public class Person
     {
-        public int Id { get; set; }
+        public int Id { get; }
         public string Name { get; set; }
         public string Begrundelse { get; set; }
         public DateTime Starttidspunkt { get; set; }
         public DateTime Sluttidspunkt { get; set; }
-        public int maxMødeTid { get; set; }
+        public int MaxMødeTid { get; set; }
         private static int currentId = 1;
 
         /*Constructor*/
         public Person()
         {
             Id = IdGenerator();
-            maxMødeTid = 1; /*Kan som minimum booke én time*/
+            MaxMødeTid = 1; /*Kan som minimum booke én time*/
         }
-
-        /*Custom constructor*/
-        public Person(string name, string begrunelse, DateTime starttidspunkt, DateTime sluttidspunkt)
-        {
-            Id = IdGenerator();
-            Name = name;
-            Begrundelse = begrunelse;
-            Starttidspunkt = starttidspunkt;
-            Sluttidspunkt = sluttidspunkt;
-        }
-
         private static int IdGenerator()
         {
             return currentId++;
         }
-
-       
     }
 }

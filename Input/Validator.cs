@@ -3,19 +3,18 @@ using Folk;
 namespace Folk;
 
 class Validator
-
 {
     /*Kontroller navn input*/
-    public string NavnKontrol(string navn)
+    public string LæsBrugerInputStreng()
     {
         int counter = 3;
         for (int n = 0; n < 3; n++)
         {
-            if (navn.Length >= 2)
+            string navn = Console.ReadLine();
+            if (navn != null && navn.Length >= 2)
             {
                 return navn;
             }
-
             counter--;
             Console.WriteLine($"Du har {counter} forsøg tilbage");
             if (counter == 0)
@@ -36,7 +35,6 @@ class Validator
             {
                 return begrundelse;
             }
-
             counter--;
             Console.WriteLine($"Forkert, du har {counter} forsøg tilbage");
             if (counter == 0)
@@ -44,28 +42,25 @@ class Validator
                 Console.WriteLine("Du har ikke flere forsøg");
             }
         }
-
         throw new Exception("Du har opbrugt dine forsøg.");
     }
 
     /*Kontrollere Titel input og giver brugeren 3 forsøg*/
-    public int TitelKontrol()
+    public int LæsBrugerInputInt()
     {
         int counter = 3;
         for (int n = 0; n < 3; n++)
         {
-            string titelValg = Console.ReadLine();
-            bool triedParse = int.TryParse(titelValg, out int parsedValue);
+            string value = Console.ReadLine();
+            bool triedParse = int.TryParse(value, out int parsedValue);
 
             if (triedParse && (parsedValue == 1 || parsedValue == 2))
             {
                 return parsedValue;
             }
-
             counter--;
             Console.WriteLine($"Ugyldigt input. Du har {counter} forsøg tilbage.");
         }
-
         throw new Exception("Du har opbrugt dine forsøg.");
     }
 }

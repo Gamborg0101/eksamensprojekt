@@ -1,32 +1,34 @@
 using eksamensprojekt;
+using eksamensprojekt.Folk;
+
 namespace Folk;
 
 public class PersonManager
 {
-   private List<Person> BesøgendeListe = new List<Person>();
+   private readonly List<Person> BesøgendeListe = new List<Person>();
    
    public void TilføjPerson(int valg)
    {
       if (valg == 1)
       {
          BesøgendeFactory besøgende = new BesøgendeFactory();
-         OpretBesøgende(besøgende.OpretBesøgende());
+         OpretBesøgende(besøgende.IndtastBesøgende());
       }
       else if (valg == 2)
       {
-         Medarbejder medarbejder = new Medarbejder();
-         OpretBesøgende(medarbejder.OpretMedarbejder());
+         MedarbejderFactory medarbejder = new MedarbejderFactory();
+         OpretBesøgende(medarbejder.IndtastMedarbejder());
       }
       else
          Console.WriteLine("Ugyldigt valg");
    }
 
-   public void OpretBesøgende(Person person)
+   private void OpretBesøgende(Person person)
    {
       BesøgendeListe.Add(person);
    }
    
-   public void PrintBesøgende()
+   public void PrintAlle()
    {
       foreach (Person individuel in BesøgendeListe)
       {
