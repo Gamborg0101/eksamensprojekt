@@ -41,7 +41,7 @@ class Tidsstyring
         return true;
     }
     
-    /*Tjekker om mødetiden overskredet i forhold til deres tilladte mødetid*/
+    //Tjekker om mødetiden overskredet i forhold til deres tilladte mødetid
     public bool TjekMaxMødetid(DateTime start, DateTime slut, int maxMødeTid)
     {
         TimeSpan diff = slut - start;

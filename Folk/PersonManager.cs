@@ -7,6 +7,7 @@ public class PersonManager
 {
    private readonly List<Person> BesøgendeListe = new List<Person>();
    
+   //Laver objekt og tilføjer enten medarbejder eller besøgende ud fra brugerinput
    public void TilføjPerson(int valg)
    {
       if (valg == 1)
@@ -22,12 +23,12 @@ public class PersonManager
       else
          Console.WriteLine("Ugyldigt valg");
    }
-
+   //Opretter objekt ind på liste
    private void OpretBesøgende(Person person)
    {
       BesøgendeListe.Add(person);
    }
-   
+   //Print alle funktion, hvor både besøgende og medarbejdere bliver printet
    public void PrintAlle()
    {
       foreach (Person individuel in BesøgendeListe)

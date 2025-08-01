@@ -8,6 +8,8 @@ public class BesøgendeFactory
     private readonly Tidsstyring tidsKontrol = new();
     private readonly InputHåndtering input = new();
     private readonly Besøgende besøgende = new();
+    
+    //Initialisere, validere og returner besøgende objekt
     public Besøgende IndtastBesøgende()
     {
         besøgende.Name = input.LæsNavn();

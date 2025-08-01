@@ -18,6 +18,7 @@ class Styring
     ]);
 
     private readonly PersonManager person = new();
+    //Styrer program baseret på brugerinput
     public void StartProgram()
     {
         while (startMenuManager.StartOgStop("start"))

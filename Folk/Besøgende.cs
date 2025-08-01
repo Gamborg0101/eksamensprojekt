@@ -5,7 +5,7 @@ namespace Folk
   public class Besøgende : Person
   {
     
-    //Constructor
+    //Constructor som sætter besøgendes MaxMødeTid værdi til 1
     public Besøgende()
     {
       MaxMødeTid = 1;

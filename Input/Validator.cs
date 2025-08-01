@@ -4,7 +4,7 @@ namespace Folk;
 
 class Validator
 {
-    /*Kontroller navn input*/
+    //Kontroller string input og giver brugeren 3 forsøg
     public string LæsBrugerInputStreng()
     {
         int counter = 3;
@@ -25,27 +25,7 @@ class Validator
         throw new Exception("Du har opbrugt dine forsøg.");
     }
 
-    /*Kontroller begrundelse input og giver brugeren 3 forsøg*/
-    public string BegrundelsesKontrol(string begrundelse)
-    {
-        int counter = 3;
-        for (int n = 0; n < 3; n++)
-        {
-            if (begrundelse.Length >= 5)
-            {
-                return begrundelse;
-            }
-            counter--;
-            Console.WriteLine($"Forkert, du har {counter} forsøg tilbage");
-            if (counter == 0)
-            {
-                Console.WriteLine("Du har ikke flere forsøg");
-            }
-        }
-        throw new Exception("Du har opbrugt dine forsøg.");
-    }
-
-    /*Kontrollere Titel input og giver brugeren 3 forsøg*/
+    //Kontrollere int input og giver brugeren 3 forsøg
     public int LæsBrugerInputInt()
     {
         int counter = 3;

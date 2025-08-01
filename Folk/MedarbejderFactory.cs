@@ -8,6 +8,7 @@ public class MedarbejderFactory
     private readonly InputHåndtering input = new();
     private readonly Medarbejder medarbejder = new();
     
+    //Initialisere, validere og returner medarbejder objekt
     public Medarbejder IndtastMedarbejder()
     {
         medarbejder.Name = input.LæsNavn();

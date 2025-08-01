@@ -14,11 +14,10 @@ namespace Folk
         public int MaxMødeTid { get; set; }
         private static int currentId = 1;
 
-        /*Constructor*/
+        //Constructor
         public Person()
         {
             Id = IdGenerator();
-            MaxMødeTid = 1; /*Kan som minimum booke én time*/
         }
         private static int IdGenerator()
         {
