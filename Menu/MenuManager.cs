@@ -28,6 +28,6 @@ class MenuManager
     //Viser menupunkterne i terminalen
     public void VisMenu()
     {
-        Console.WriteLine(LavMenupunkter());
+        Console.Write(LavMenupunkter());
     }
 }

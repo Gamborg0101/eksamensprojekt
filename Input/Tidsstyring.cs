@@ -8,6 +8,7 @@ class Tidsstyring
         int counter = 3;
         for (int i = 0; i < 3; i++)
         {
+            Console.Write("Brugervalg: ");
             string input = Console.ReadLine();
             if (DateTime.TryParse(input, out DateTime tid) && KvarterKontrol(tid))
             {

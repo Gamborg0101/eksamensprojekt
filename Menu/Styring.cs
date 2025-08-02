@@ -39,11 +39,11 @@ class Styring
                     person.SletBesøgende();
                     break;
                 case 4:
-                    Console.WriteLine("Tak for denne gang");
+                    Console.Write("Tak for denne gang");
                     startMenuManager.StartOgStop("stop");
                     return;
                 default:
-                    Console.WriteLine("Ugyldigt valg");
+                    Console.Write("Ugyldigt valg");
                     break;
             }
         }

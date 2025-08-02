@@ -23,6 +23,7 @@ public class InputHåndtering
     //Returner valideret brugerinput - starttid
     public DateTime LæsStarttidspunkt()
     {
+        
         Console.WriteLine("Vælg starttid - f.eks. 12:00 | 12:15 | 12:30 | 12:45");
         return tidsKontrol.FåTidVærdi();
     }

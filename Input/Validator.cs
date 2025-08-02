@@ -8,6 +8,7 @@ class Validator
         int counter = 3;
         for (int n = 0; n < 3; n++)
         {
+            
             string navn = Console.ReadLine();
             if (navn != null && navn.Length >= 2)
             {
@@ -25,27 +26,39 @@ class Validator
 
     public Person LæsBrugerIntInputSletMenu(List<Person> besøgende)
     {
-        int counter = 3;
-        //Hvis listen er tom, så skal dette returneres med det samme
+        /*Der skal være en mulighed for, at brugeren kan trykke 0, og så går den en tilbage.*/
         if (besøgende.Count == 0)
         {
             Console.WriteLine("Listen er tom");
             return null;
         }
-        for (int i = 0; i < 3; i++)
+        
+        int counter = 3;
+        
+        while(counter > 0)
         {
-            string id = Console.ReadLine();
-            bool triedParse = int.TryParse(id, out int parsedId);
-            if (triedParse)
+            Console.WriteLine("Hvilken bruger vil du slette? Brug ID");
+            Console.Write("Brugervalg: ");
+            string input = Console.ReadLine();
+            if (input == null)
             {
-                Person sletElement = besøgende.Single(person => person.Id == parsedId);
-                return sletElement;
+                return null;
+            }
+            bool erValid = int.TryParse(input, out int parsedId);
+
+            if (!erValid)
+            {
+                Console.WriteLine("Ugyldigt input. Indtast et tal.");
+            }
+            else
+            {
+                Person person = besøgende.FirstOrDefault(person => person.Id == parsedId); //Hvis false, returner null
+                if (person != null)
+                    return person;
+                Console.WriteLine("Ingen person med dette ID blev fundet.");
             }
             counter--;
-            
-            if(counter == 0){
-                Console.WriteLine($"Du har {counter} forsøg tilbage eller listen er tom");
-            }
+            Console.WriteLine($"Du har {counter} forsøg tilbage.");
         }
         throw new Exception("Du har opbrugt dine forsøg.");
     }
@@ -57,6 +70,7 @@ class Validator
         int counter = 3;
         for (int n = 0; n < 3; n++)
         {
+            Console.Write("Brugervalg: ");
             string value = Console.ReadLine();
             bool triedParse = int.TryParse(value, out int parsedValue);
 
@@ -75,6 +89,7 @@ class Validator
             int counter = 3;
             for (int n = 0; n < 3; n++)
             {
+                Console.Write("Brugervalg: ");
                 string value = Console.ReadLine();
                 bool triedParse = int.TryParse(value, out int parsedValue);
 

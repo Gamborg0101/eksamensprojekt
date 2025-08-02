@@ -32,12 +32,8 @@ public class PersonManager
 
    public void SletBesøgende()
    {
-      //Når modtager input - skal være en int, hvis ikke, 3 forsøg
-      //Hvis bruger ikke eksistere, så skal man sendes tilbage til hovedmenuen
-      
-      Console.WriteLine("Hvilken bruger vil du slette? Brug ID");
       Person fundetId = validate.LæsBrugerIntInputSletMenu(BesøgendeListe);
-      if (fundetId != null)
+      if (fundetId != null) //Skal valider her, eller sætte Console.WriteLine ind i metoden.
       {
          BesøgendeListe.Remove(fundetId);
          Console.WriteLine("Personen er blevet slettet");
