@@ -6,6 +6,7 @@ namespace Folk;
 public class PersonManager
 {
    private readonly List<Person> BesøgendeListe = new List<Person>();
+   private readonly Validator validate = new();
    
    //Laver objekt og tilføjer enten medarbejder eller besøgende ud fra brugerinput
    public void TilføjPerson(int valg)
@@ -28,6 +29,21 @@ public class PersonManager
    {
       BesøgendeListe.Add(person);
    }
+
+   public void SletBesøgende()
+   {
+      //Når modtager input - skal være en int, hvis ikke, 3 forsøg
+      //Hvis bruger ikke eksistere, så skal man sendes tilbage til hovedmenuen
+      
+      Console.WriteLine("Hvilken bruger vil du slette? Brug ID");
+      Person fundetId = validate.LæsBrugerIntInputSletMenu(BesøgendeListe);
+      if (fundetId != null)
+      {
+         BesøgendeListe.Remove(fundetId);
+         Console.WriteLine("Personen er blevet slettet");
+      }
+   }
+   
    //Print alle funktion, hvor både besøgende og medarbejdere bliver printet
    public void PrintAlle()
    {

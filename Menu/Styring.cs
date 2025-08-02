@@ -1,3 +1,4 @@
+using eksamensprojekt.Input;
 using eksamensprojekt.Menu;
 using Folk;
 
@@ -9,6 +10,7 @@ class Styring
     private readonly MenuManager startMenuManager = new([
         "Tilføj person",
         "Vis alle",
+        "Slet",
         "Afslut program"
     ]);
 
@@ -16,7 +18,7 @@ class Styring
         "Besøgende",
         "Medarbejder"
     ]);
-
+    
     private readonly PersonManager person = new();
     //Styrer program baseret på brugerinput
     public void StartProgram()
@@ -24,19 +26,22 @@ class Styring
         while (startMenuManager.StartOgStop("start"))
         {
             startMenuManager.VisMenu();
-            switch (validate.LæsBrugerInputInt())
+            switch (validate.LæsBrugerInputIntHovedmenu())
             {
                 case 1:
                     underMenu.VisMenu();
-                    person.TilføjPerson(validate.LæsBrugerInputInt());
+                    person.TilføjPerson(validate.LæsBrugerInputUndermenu());
                     break;
                 case 2:
                     person.PrintAlle();
                     break;
                 case 3:
+                    person.SletBesøgende();
+                    break;
+                case 4:
                     Console.WriteLine("Tak for denne gang");
                     startMenuManager.StartOgStop("stop");
-                    break;
+                    return;
                 default:
                     Console.WriteLine("Ugyldigt valg");
                     break;
