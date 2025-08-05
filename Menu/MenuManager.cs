@@ -1,11 +1,11 @@
 namespace eksamensprojekt.Menu;
 class MenuManager
 {
-    private string[] MenuPunkt { get; set; }
+    public string[] MenuPunkter { get; }
     
-    public MenuManager(string[] menuPunkt)
+    public MenuManager(string[] menuPunkter)
     {
-        MenuPunkt = menuPunkt;
+        MenuPunkter = menuPunkter;
     }
     
     //Returner true eller false afhængigt af input for at starte eller stoppe programmet
@@ -18,9 +18,9 @@ class MenuManager
     private string LavMenupunkter()
     {
         string nytPunkt = "";
-        for (int i = 0; i < MenuPunkt.Length; i++)
+        for (int i = 0; i < MenuPunkter.Length; i++)
         {
-            nytPunkt += $"{i + 1}) {MenuPunkt[i]}\n";
+            nytPunkt += $"{i + 1}) {MenuPunkter[i]}\n";
         }
         return nytPunkt;
     }

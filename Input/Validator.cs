@@ -1,3 +1,5 @@
+using eksamensprojekt.Menu;
+
 namespace Folk;
 
 class Validator
@@ -8,12 +10,12 @@ class Validator
         int counter = 3;
         for (int n = 0; n < 3; n++)
         {
-            
             string navn = Console.ReadLine();
             if (navn != null && navn.Length >= 2)
             {
                 return navn;
             }
+
             counter--;
             Console.WriteLine($"Du har {counter} forsøg tilbage");
             if (counter == 0)
@@ -21,6 +23,7 @@ class Validator
                 throw new Exception("Du har opbrugt dine forsøg.");
             }
         }
+
         throw new Exception("Du har opbrugt dine forsøg.");
     }
 
@@ -32,10 +35,10 @@ class Validator
             Console.WriteLine("Listen er tom");
             return null;
         }
-        
+
         int counter = 3;
-        
-        while(counter > 0)
+
+        while (counter > 0)
         {
             Console.WriteLine("Hvilken bruger vil du slette? Brug ID");
             Console.Write("Brugervalg: ");
@@ -44,6 +47,7 @@ class Validator
             {
                 return null;
             }
+
             bool erValid = int.TryParse(input, out int parsedId);
 
             if (!erValid)
@@ -57,15 +61,20 @@ class Validator
                     return person;
                 Console.WriteLine("Ingen person med dette ID blev fundet.");
             }
+
             counter--;
             Console.WriteLine($"Du har {counter} forsøg tilbage.");
         }
+
         throw new Exception("Du har opbrugt dine forsøg.");
     }
 
     //Kontrollere int input og giver brugeren 3 forsøg
-    public int LæsBrugerInputIntHovedmenu()
+    public int LæsBrugerInputIntHovedmenu(MenuManager menu)
     {
+        int antalMenupunkter = menu.MenuPunkter.Length;
+        Console.WriteLine(antalMenupunkter);
+
         //Kunne gøre noget med at modtage argument med menu.length, og så slette den ene metode
         int counter = 3;
         for (int n = 0; n < 3; n++)
@@ -73,16 +82,23 @@ class Validator
             Console.Write("Brugervalg: ");
             string value = Console.ReadLine();
             bool triedParse = int.TryParse(value, out int parsedValue);
-
-            if (triedParse && (parsedValue == 1 || parsedValue == 2 || parsedValue == 3 || parsedValue == 4))
+            if (!triedParse)
             {
-                return parsedValue;
+                Console.WriteLine("Det gik dårligt");
+                counter--;
+                continue;
             }
-            counter--;
-            Console.WriteLine($"Ugyldigt input. Du har {counter} forsøg tilbage.");
+            if (parsedValue > antalMenupunkter)
+            {
+                Console.WriteLine($"Brugvalg skal være mellem 1 og {antalMenupunkter}");
+                counter--;
+                continue;
+            }
+            return parsedValue;
         }
         throw new Exception("Du har opbrugt dine forsøg.");
     }
+
     public int LæsBrugerInputUndermenu()
     {
         {
@@ -97,9 +113,11 @@ class Validator
                 {
                     return parsedValue;
                 }
+
                 counter--;
                 Console.WriteLine($"Ugyldigt input. Du har {counter} forsøg tilbage.");
             }
+
             throw new Exception("Du har opbrugt dine forsøg.");
         }
     }

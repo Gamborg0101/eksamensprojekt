@@ -1,4 +1,7 @@
-﻿namespace eksamensprojekt;
+﻿using eksamensprojekt.Menu;
+namespace eksamensprojekt;
+
+
 
 class Program
 {

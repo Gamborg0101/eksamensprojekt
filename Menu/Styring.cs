@@ -1,8 +1,6 @@
-using eksamensprojekt.Input;
-using eksamensprojekt.Menu;
 using Folk;
 
-namespace eksamensprojekt;
+namespace eksamensprojekt.Menu;
 
 class Styring
 {
@@ -26,7 +24,7 @@ class Styring
         while (startMenuManager.StartOgStop("start"))
         {
             startMenuManager.VisMenu();
-            switch (validate.LæsBrugerInputIntHovedmenu())
+            switch (validate.LæsBrugerInputIntHovedmenu(startMenuManager))
             {
                 case 1:
                     underMenu.VisMenu();
