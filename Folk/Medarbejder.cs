@@ -1,4 +1,5 @@
 using eksamensprojekt;
+using eksamensprojekt.Folk;
 using eksamensprojekt.Input;
 
 namespace Folk
@@ -6,10 +7,9 @@ namespace Folk
     public class Medarbejder : Person
     {
         //Constructor som sætter besøgendes MaxMødeTid værdi til 4
-        public Medarbejder()
+        public override TimeSpan MaxMødeTid()
         {
-            MaxMødeTid = 4;
+            return TimeSpan.FromHours(4);
         }
-        
     }
 }

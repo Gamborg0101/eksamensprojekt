@@ -24,11 +24,11 @@ class Styring
         while (startMenuManager.StartOgStop("start"))
         {
             startMenuManager.VisMenu();
-            switch (validate.LæsBrugerInputIntHovedmenu(startMenuManager))
+            switch (validate.VælgMenupunkt(startMenuManager))
             {
                 case 1:
                     underMenu.VisMenu();
-                    person.TilføjPerson(validate.LæsBrugerInputUndermenu());
+                    person.TilføjPerson(validate.VælgMenupunkt(underMenu));
                     break;
                 case 2:
                     person.PrintAlle();

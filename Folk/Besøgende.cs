@@ -1,14 +1,13 @@
-using System.ComponentModel.DataAnnotations;
-using eksamensprojekt;
-namespace Folk
+using Folk;
+
+namespace eksamensprojekt.Folk
 {
   public class Besøgende : Person
   {
     
-    //Constructor som sætter besøgendes MaxMødeTid værdi til 1
-    public Besøgende()
+    public override TimeSpan MaxMødeTid()
     {
-      MaxMødeTid = 1;
+      return BesøgendeFactory.besøgendeMødetid;
     }
   }
 }

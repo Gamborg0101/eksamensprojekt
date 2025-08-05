@@ -1,3 +1,4 @@
+using eksamensprojekt.Folk;
 using eksamensprojekt.Menu;
 
 namespace Folk;
@@ -5,10 +6,9 @@ namespace Folk;
 class Validator
 {
     //Kontroller string input og giver brugeren 3 forsøg
-    public string LæsBrugerInputStreng()
+    public static string LæsBrugerInputStreng()
     {
-        int counter = 3;
-        for (int n = 0; n < 3; n++)
+        for (int n = 3; n > 0; n--) //LAV ALLE COUNTER FOR-LØKKERNE SÅDAN HER
         {
             string navn = Console.ReadLine();
             if (navn != null && navn.Length >= 2)
@@ -16,12 +16,7 @@ class Validator
                 return navn;
             }
 
-            counter--;
-            Console.WriteLine($"Du har {counter} forsøg tilbage");
-            if (counter == 0)
-            {
-                throw new Exception("Du har opbrugt dine forsøg.");
-            }
+            Console.WriteLine($"Du har {n} forsøg tilbage");
         }
 
         throw new Exception("Du har opbrugt dine forsøg.");
@@ -29,96 +24,41 @@ class Validator
 
     public Person LæsBrugerIntInputSletMenu(List<Person> besøgende)
     {
-        /*Der skal være en mulighed for, at brugeren kan trykke 0, og så går den en tilbage.*/
-        if (besøgende.Count == 0)
+        Console.WriteLine("Gi' mig et tal til at slette");
+        string[] ids = new string[besøgende.Count];
+        for (int i = 0; i < besøgende.Count; i++)
         {
-            Console.WriteLine("Listen er tom");
-            return null;
+            ids[i] = besøgende[i].Name;
         }
 
-        int counter = 3;
-
-        while (counter > 0)
-        {
-            Console.WriteLine("Hvilken bruger vil du slette? Brug ID");
-            Console.Write("Brugervalg: ");
-            string input = Console.ReadLine();
-            if (input == null)
-            {
-                return null;
-            }
-
-            bool erValid = int.TryParse(input, out int parsedId);
-
-            if (!erValid)
-            {
-                Console.WriteLine("Ugyldigt input. Indtast et tal.");
-            }
-            else
-            {
-                Person person = besøgende.FirstOrDefault(person => person.Id == parsedId); //Hvis false, returner null
-                if (person != null)
-                    return person;
-                Console.WriteLine("Ingen person med dette ID blev fundet.");
-            }
-
-            counter--;
-            Console.WriteLine($"Du har {counter} forsøg tilbage.");
-        }
-
-        throw new Exception("Du har opbrugt dine forsøg.");
+        MenuManager menuMedBrugerOversigt = new MenuManager(ids);
+        int valg = VælgMenupunkt(menuMedBrugerOversigt);
+        
+        return besøgende[valg - 1];
     }
 
-    //Kontrollere int input og giver brugeren 3 forsøg
-    public int LæsBrugerInputIntHovedmenu(MenuManager menu)
+    public int VælgMenupunkt(MenuManager menu)
     {
-        int antalMenupunkter = menu.MenuPunkter.Length;
-        Console.WriteLine(antalMenupunkter);
-
-        //Kunne gøre noget med at modtage argument med menu.length, og så slette den ene metode
-        int counter = 3;
-        for (int n = 0; n < 3; n++)
+        for (int n = 3; n > 0; n--)
         {
-            Console.Write("Brugervalg: ");
-            string value = Console.ReadLine();
-            bool triedParse = int.TryParse(value, out int parsedValue);
-            if (!triedParse)
+            string brugerInput = Console.ReadLine();
+
+            bool erInt = int.TryParse(brugerInput, out int intBrugerInput);
+            if (!erInt)
             {
-                Console.WriteLine("Det gik dårligt");
-                counter--;
+                Console.WriteLine("Ugyldigt input. Indtast et tal."); //husk n
                 continue;
             }
-            if (parsedValue > antalMenupunkter)
+
+            if (intBrugerInput > menu.MenuPunkter.Length || intBrugerInput <= 0)
             {
-                Console.WriteLine($"Brugvalg skal være mellem 1 og {antalMenupunkter}");
-                counter--;
+                Console.WriteLine("Ugyldigt input. Indtast et tal."); //husk n!!! Kan bruge "indtaste tal mellem x og x
                 continue;
             }
-            return parsedValue;
+            return intBrugerInput;
         }
+
+        Console.WriteLine("Du har brugt alle dine forsøg");
         throw new Exception("Du har opbrugt dine forsøg.");
-    }
-
-    public int LæsBrugerInputUndermenu()
-    {
-        {
-            int counter = 3;
-            for (int n = 0; n < 3; n++)
-            {
-                Console.Write("Brugervalg: ");
-                string value = Console.ReadLine();
-                bool triedParse = int.TryParse(value, out int parsedValue);
-
-                if (triedParse && (parsedValue == 1 || parsedValue == 2))
-                {
-                    return parsedValue;
-                }
-
-                counter--;
-                Console.WriteLine($"Ugyldigt input. Du har {counter} forsøg tilbage.");
-            }
-
-            throw new Exception("Du har opbrugt dine forsøg.");
-        }
     }
 }

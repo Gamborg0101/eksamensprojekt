@@ -20,7 +20,7 @@ public class MedarbejderFactory
             medarbejder.Sluttidspunkt = input.LæsSluttidspunkt();
         } 
         while (!tidsKontrol.StartogSlutErGyldigt(medarbejder.Starttidspunkt, medarbejder.Sluttidspunkt) 
-               || !tidsKontrol.TjekMaxMødetid(medarbejder.Starttidspunkt, medarbejder.Sluttidspunkt, medarbejder.MaxMødeTid));
+               || !tidsKontrol.TjekMaxMødetid(medarbejder.Starttidspunkt, medarbejder.Sluttidspunkt, medarbejder.MaxMødeTid()));
         Console.WriteLine($"Tilføjer besøgende - {medarbejder.Name} - til besøgslisten");
         
         return medarbejder;

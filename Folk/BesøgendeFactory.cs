@@ -3,27 +3,40 @@ using Folk;
 
 namespace eksamensprojekt.Folk;
 
+/*
+Grunden til at jeg bruger statiske metoder, er, at de metoder jeg kalder ikke indeholder referencer til den instans de bliver kaldt på. 
+Det vil sige, at jeg i teorien opretter objekter, uden at tildele dem nogle værdier, men at jeg blot bruger metoderne.
+
+ */
+
 public class BesøgendeFactory
 {
-    private readonly Tidsstyring tidsKontrol = new();
-    private readonly InputHåndtering input = new();
-    private readonly Besøgende besøgende = new();
+    public static TimeSpan besøgendeMødetid = TimeSpan.FromHours(1);
     
     //Initialisere, validere og returner besøgende objekt
     public Besøgende IndtastBesøgende()
     {
-        besøgende.Name = input.LæsNavn();
-        besøgende.Begrundelse = input.LæsBegrundelse();
+        string name = InputHåndtering.LæsNavn();
+        string begrundelse = InputHåndtering.LæsBegrundelse();
+
+        DateTime startTidspunkt;
+        DateTime slutTidspunkt;
         
         do
         {
-            besøgende.Starttidspunkt = input.LæsStarttidspunkt();
-            besøgende.Sluttidspunkt = input.LæsSluttidspunkt();
+            startTidspunkt = InputHåndtering.LæsStarttidspunkt();
+            slutTidspunkt = InputHåndtering.LæsSluttidspunkt();
         } 
-        while (!tidsKontrol.StartogSlutErGyldigt(besøgende.Starttidspunkt, besøgende.Sluttidspunkt) 
-                || !tidsKontrol.TjekMaxMødetid(besøgende.Starttidspunkt, besøgende.Sluttidspunkt, besøgende.MaxMødeTid));
-        Console.WriteLine($"Tilføjer besøgende - {besøgende.Name} - til besøgslisten");
-        
-        return besøgende;
+        while (!Tidsstyring.StartogSlutErGyldigt(startTidspunkt, slutTidspunkt) 
+                || !Tidsstyring.TjekMaxMødetid(startTidspunkt, slutTidspunkt, besøgendeMødetid));
+        Console.WriteLine($"Tilføjer besøgende - {name} - til besøgslisten");
+
+        return new Besøgende
+        {
+            Name = name,
+            Begrundelse = begrundelse,
+            Starttidspunkt = startTidspunkt,
+            Sluttidspunkt = slutTidspunkt
+        };
     }
 }

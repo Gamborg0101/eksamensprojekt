@@ -3,7 +3,7 @@ namespace eksamensprojekt.Input;
 class Tidsstyring
 {
     //Kontroller værdien af DateTime er korrekt, og giver brugeren 3 forsøg
-    public DateTime FåTidVærdi()
+    public static DateTime FåTidVærdi()
     {
         int counter = 3;
         for (int i = 0; i < 3; i++)
@@ -21,7 +21,7 @@ class Tidsstyring
     }
     
     //Kontrollere om tidspunktet er delbart med 15, så der kun kan laves tidspunkter med 15 minutters incrementer
-    private bool KvarterKontrol(DateTime tidspunkt)
+    private static bool KvarterKontrol(DateTime tidspunkt)
     {
         if (tidspunkt.Minute % 15 == 0)
         {
@@ -32,7 +32,7 @@ class Tidsstyring
     }
     
     //Kontrollere om starttidspunktet er tidligere end sluttidspunktet
-    public bool StartogSlutErGyldigt(DateTime start, DateTime slut)
+    public static bool StartogSlutErGyldigt(DateTime start, DateTime slut)
     {
         if (start >= slut)
         {
@@ -43,10 +43,10 @@ class Tidsstyring
     }
     
     //Tjekker om mødetiden overskredet i forhold til deres tilladte mødetid
-    public bool TjekMaxMødetid(DateTime start, DateTime slut, int maxMødeTid)
+    public static bool TjekMaxMødetid(DateTime start, DateTime slut, TimeSpan maxMødeTid)
     {
         TimeSpan diff = slut - start;
-        if (diff.TotalHours <= maxMødeTid)
+        if (diff.TotalHours <= maxMødeTid.Hours)
         {
             return true;
         }

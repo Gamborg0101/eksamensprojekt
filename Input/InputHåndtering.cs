@@ -9,28 +9,28 @@ public class InputHåndtering
     private Tidsstyring tidsKontrol = new();
     
     //Returner valideret brugerinput - navn
-    public string LæsNavn()
+    public static string LæsNavn()
     {
         Console.Write("Navn på besøgende: ");
-        return validate.LæsBrugerInputStreng();
+        return Validator.LæsBrugerInputStreng();
     }
     //Returner valideret brugerinput - begrundelse
-    public string LæsBegrundelse()
+    public static string LæsBegrundelse()
     {
         Console.Write("Begrundelse for besøg: ");
-        return validate.LæsBrugerInputStreng();
+        return Validator.LæsBrugerInputStreng();
     }
     //Returner valideret brugerinput - starttid
-    public DateTime LæsStarttidspunkt()
+    public static DateTime LæsStarttidspunkt()
     {
         
         Console.WriteLine("Vælg starttid - f.eks. 12:00 | 12:15 | 12:30 | 12:45");
-        return tidsKontrol.FåTidVærdi();
+        return Tidsstyring.FåTidVærdi();
     }
     //Returner valideret brugerinput - sluttid
-    public DateTime LæsSluttidspunkt()
+    public static DateTime LæsSluttidspunkt()
     {
         Console.WriteLine("Vælg sluttid - f.eks. 12:00 | 12:15 | 12:30 | 12:45");
-        return tidsKontrol.FåTidVærdi();
+        return Tidsstyring.FåTidVærdi();
     }
 }
