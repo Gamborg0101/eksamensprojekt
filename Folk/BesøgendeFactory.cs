@@ -7,7 +7,7 @@ namespace eksamensprojekt.Folk;
 Grunden til at jeg bruger statiske metoder, er, at de metoder jeg kalder ikke indeholder referencer til den instans de bliver kaldt på. 
 Det vil sige, at jeg i teorien opretter objekter, uden at tildele dem nogle værdier, men at jeg blot bruger metoderne.
 
- */
+*/
 
 public class BesøgendeFactory
 {

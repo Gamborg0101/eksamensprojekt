@@ -4,25 +4,33 @@ namespace eksamensprojekt.Folk;
 
 public class MedarbejderFactory
 {
-    private readonly Tidsstyring tidsKontrol = new();
-    private readonly InputHåndtering input = new();
-    private readonly Medarbejder medarbejder = new();
     
+    public static TimeSpan besøgendeMødeTid = TimeSpan.FromHours(4);
+
     //Initialisere, validere og returner medarbejder objekt
     public Medarbejder IndtastMedarbejder()
     {
-        medarbejder.Name = input.LæsNavn();
-        medarbejder.Begrundelse = input.LæsBegrundelse();
+        string name = InputHåndtering.LæsNavn();
+        string begrundelse = InputHåndtering.LæsBegrundelse();
+
+        DateTime startTidspunkt;
+        DateTime slutTidspunkt; 
         
         do
         {
-            medarbejder.Starttidspunkt = input.LæsStarttidspunkt();
-            medarbejder.Sluttidspunkt = input.LæsSluttidspunkt();
+            startTidspunkt = InputHåndtering.LæsStarttidspunkt();
+            slutTidspunkt = InputHåndtering.LæsSluttidspunkt();
         } 
-        while (!tidsKontrol.StartogSlutErGyldigt(medarbejder.Starttidspunkt, medarbejder.Sluttidspunkt) 
-               || !tidsKontrol.TjekMaxMødetid(medarbejder.Starttidspunkt, medarbejder.Sluttidspunkt, medarbejder.MaxMødeTid()));
-        Console.WriteLine($"Tilføjer besøgende - {medarbejder.Name} - til besøgslisten");
-        
-        return medarbejder;
+        while (!Tidsstyring.StartogSlutErGyldigt(startTidspunkt, slutTidspunkt) 
+               || !Tidsstyring.TjekMaxMødetid(startTidspunkt, slutTidspunkt, besøgendeMødeTid));
+        Console.WriteLine($"Tilføjer besøgende - {name} - til besøgslisten");
+
+        return new Medarbejder
+        {
+            Name = name,
+            Begrundelse = begrundelse,
+            Starttidspunkt = startTidspunkt,
+            Sluttidspunkt = slutTidspunkt
+        };
     }
 }
