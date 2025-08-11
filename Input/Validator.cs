@@ -1,14 +1,13 @@
-using eksamensprojekt.Folk;
-using eksamensprojekt.Menu;
+namespace eksamensprojekt.Input;
 
-namespace Folk;
+using Folk;
+using Menu;
 
 class Validator
 {
-    //Kontroller string input og giver brugeren 3 forsøg
     public static string LæsBrugerInputStreng()
     {
-        for (int n = 3; n > 0; n--) //LAV ALLE COUNTER FOR-LØKKERNE SÅDAN HER
+        for (int n = 3; n > 0; n--)
         {
             string navn = Console.ReadLine();
             if (navn != null && navn.Length >= 2)
@@ -16,7 +15,7 @@ class Validator
                 return navn;
             }
 
-            Console.WriteLine($"Du har {n} forsøg tilbage");
+            Console.WriteLine($"Forkert input - Du har {n} forsøg tilbage");
         }
 
         throw new Exception("Du har opbrugt dine forsøg.");
@@ -24,7 +23,7 @@ class Validator
 
     public Person LæsBrugerIntInputSletMenu(List<Person> besøgende)
     {
-        Console.WriteLine("Gi' mig et tal til at slette");
+        Console.WriteLine("Giv mig id'et på indregistreringen, som du gerne vil slette");
         string[] ids = new string[besøgende.Count];
         for (int i = 0; i < besøgende.Count; i++)
         {
@@ -33,7 +32,7 @@ class Validator
 
         MenuManager menuMedBrugerOversigt = new MenuManager(ids);
         int valg = VælgMenupunkt(menuMedBrugerOversigt);
-        
+
         return besøgende[valg - 1];
     }
 
@@ -42,23 +41,22 @@ class Validator
         for (int n = 3; n > 0; n--)
         {
             string brugerInput = Console.ReadLine();
-
             bool erInt = int.TryParse(brugerInput, out int intBrugerInput);
             if (!erInt)
             {
-                Console.WriteLine("Ugyldigt input. Indtast et tal."); //husk n
+                Console.WriteLine($"Ugyldigt input. Indtast et tal. Du har {n - 1} forsøg tilbage");
                 continue;
             }
 
             if (intBrugerInput > menu.MenuPunkter.Length || intBrugerInput <= 0)
             {
-                Console.WriteLine("Ugyldigt input. Indtast et tal."); //husk n!!! Kan bruge "indtaste tal mellem x og x
+                Console.WriteLine($"Du har {n - 1} forsøg tilbage");
                 continue;
             }
+
             return intBrugerInput;
         }
 
-        Console.WriteLine("Du har brugt alle dine forsøg");
         throw new Exception("Du har opbrugt dine forsøg.");
     }
 }

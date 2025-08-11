@@ -5,21 +5,19 @@ class Tidsstyring
     //Kontroller værdien af DateTime er korrekt, og giver brugeren 3 forsøg
     public static DateTime FåTidVærdi()
     {
-        int counter = 3;
-        for (int i = 0; i < 3; i++)
+
+        for (int n = 3; n > 0; n--)
         {
-            Console.Write("Brugervalg: ");
             string input = Console.ReadLine();
             if (DateTime.TryParse(input, out DateTime tid) && KvarterKontrol(tid))
             {
                 return tid;
             }
-            counter--;
-            Console.WriteLine($"Ugyldigt klokkeslæt, du har {counter} forsøg tilbage.");
+            Console.WriteLine($"Ugyldigt klokkeslæt, du har {n - 1} forsøg tilbage.");
         }
-        throw new Exception("Ugyldig tid efter 3 forsøg.");
+        throw new Exception("Du har opbrugt dine forsøg.");
     }
-    
+
     //Kontrollere om tidspunktet er delbart med 15, så der kun kan laves tidspunkter med 15 minutters incrementer
     private static bool KvarterKontrol(DateTime tidspunkt)
     {
@@ -30,7 +28,7 @@ class Tidsstyring
         Console.WriteLine("Du kan kun skrive minuttidspunkterne 00, 15, 30 og 45");
         return false;
     }
-    
+
     //Kontrollere om starttidspunktet er tidligere end sluttidspunktet
     public static bool StartogSlutErGyldigt(DateTime start, DateTime slut)
     {
@@ -41,7 +39,7 @@ class Tidsstyring
         }
         return true;
     }
-    
+
     //Tjekker om mødetiden overskredet i forhold til deres tilladte mødetid
     public static bool TjekMaxMødetid(DateTime start, DateTime slut, TimeSpan maxMødeTid)
     {

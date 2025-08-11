@@ -1,11 +1,10 @@
+namespace eksamensprojekt.Folk;
 
-namespace eksamensprojekt.Folk
+public class Besøgende : Person
 {
-  public class Besøgende : Person
-  {
+    //Sætter besøgende besøgstid
     public override TimeSpan MaxMødeTid()
     {
-      return BesøgendeFactory.besøgendeMødetid;
+        return BesøgendeFactory.BesøgendeMødetid;
     }
-  }
 }

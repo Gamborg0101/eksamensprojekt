@@ -1,11 +1,10 @@
-namespace eksamensprojekt.Folk
+namespace eksamensprojekt.Folk;
+
+public class Medarbejder : Person
 {
-    public class Medarbejder : Person
+    //Sætter medarbejder besøgstid
+    public override TimeSpan MaxMødeTid()
     {
-        //Constructor som sætter besøgendes MaxMødeTid værdi til 4
-        public override TimeSpan MaxMødeTid()
-        {
-            return MedarbejderFactory.besøgendeMødeTid;
-        }
+        return MedarbejderFactory.BesøgendeMødeTid;
     }
 }

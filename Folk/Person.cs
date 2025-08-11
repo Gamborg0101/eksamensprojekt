@@ -8,15 +8,15 @@ public abstract class Person
     public DateTime Starttidspunkt { get; set; }
     public DateTime Sluttidspunkt { get; set; }
     public abstract TimeSpan MaxMødeTid();
-    private static int currentId = 1; // vigtigt at den bliver gemt på klassen og ikke instansen
-
-    //Constructor
-    public Person()
+    private static int _currentId = 1;
+    
+    //Protected - ellers kan Id ikke sættes i Medarbejder når den laves i MedarbejderFactory. 
+    protected Person()
     {
         Id = IdGenerator();
     }
     private static int IdGenerator()
     {
-        return currentId++;
+        return _currentId++;
     }
 }

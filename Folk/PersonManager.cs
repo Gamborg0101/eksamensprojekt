@@ -1,56 +1,64 @@
-using eksamensprojekt;
-using eksamensprojekt.Folk;
-
-namespace Folk;
+namespace eksamensprojekt.Folk;
+using Input;
 
 public class PersonManager
 {
-   private readonly List<Person> BesøgendeListe = new List<Person>();
-   private readonly Validator validate = new();
+   private readonly List<Person> _besøgendeListe = new();
+   private readonly Validator _validate = new();
    
-   //Laver objekt og tilføjer enten medarbejder eller besøgende ud fra brugerinput
+   //Tager brugerinput - Laver objekt og tilføjer enten medarbejder eller besøgende
    public void TilføjPerson(int valg)
    {
-      if (valg == 1)
+      switch (valg)
       {
-         BesøgendeFactory besøgende = new BesøgendeFactory();
-         OpretBesøgende(besøgende.IndtastBesøgende());
+         case 1:
+         {
+            BesøgendeFactory besøgende = new BesøgendeFactory();
+            OpretBesøgende(besøgende.IndtastBesøgende());
+            break;
+         }
+         case 2:
+         {
+            MedarbejderFactory medarbejder = new MedarbejderFactory();
+            OpretBesøgende(medarbejder.IndtastMedarbejder());
+            break;
+         }
+         default:
+            Console.WriteLine("Ugyldigt valg");
+            break;
       }
-      else if (valg == 2)
-      {
-         MedarbejderFactory medarbejder = new MedarbejderFactory();
-         OpretBesøgende(medarbejder.IndtastMedarbejder());
-      }
-      else
-         Console.WriteLine("Ugyldigt valg");
    }
-   //Opretter objekt ind på liste
+   //Opretter objekt ind på liste - polymorfi - Her er person enten en Besøgende eller Medarbejder, men listen er af typen Person.
    private void OpretBesøgende(Person person)
    {
-      BesøgendeListe.Add(person);
+      _besøgendeListe.Add(person);
    }
 
    public void SletBesøgende()
    {
-      Person fundetId = validate.LæsBrugerIntInputSletMenu(BesøgendeListe);
-      if (fundetId != null) //Skal valider her, eller sætte Console.WriteLine ind i metoden.
+      if (_besøgendeListe.Count == 0)
       {
-         BesøgendeListe.Remove(fundetId);
-         Console.WriteLine("Personen er blevet slettet");
+         Console.WriteLine("Listen er tom!");
+         return;
       }
+      
+      Person fundetId = _validate.LæsBrugerIntInputSletMenu(_besøgendeListe);
+      Console.WriteLine($"Registrering - {fundetId.Id} - er blevet slettet");
+      _besøgendeListe.Remove(fundetId);
+      
    }
-   
+
    //Print alle funktion, hvor både besøgende og medarbejdere bliver printet
    public void PrintAlle()
    {
-      foreach (Person individuel in BesøgendeListe)
+      foreach (Person individuel in _besøgendeListe)
       {
          Console.Write("\n");
          Console.WriteLine("Id: " + individuel.Id);
          Console.WriteLine("Navn: " + individuel.Name);
          Console.WriteLine("Begrundelse: " + individuel.Begrundelse);
-         Console.WriteLine("Starttidspunkt: " + individuel.Starttidspunkt.ToString("dd-MM-yyyy - HH:mm:ss"));
-         Console.WriteLine("Sluttidspunkt: " + individuel.Sluttidspunkt.ToString("dd-MM-yyyy - HH:mm:ss"));
+         Console.WriteLine("Starttidspunkt: " + individuel.Starttidspunkt.ToString("dd-MM-yyyy - HH:mm"));
+         Console.WriteLine("Sluttidspunkt: " + individuel.Sluttidspunkt.ToString("dd-MM-yyyy - HH:mm"));
          Console.Write("\n");
       }
    }

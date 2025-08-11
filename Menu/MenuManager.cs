@@ -1,19 +1,20 @@
 namespace eksamensprojekt.Menu;
+
 class MenuManager
 {
     public string[] MenuPunkter { get; }
-    
+
     public MenuManager(string[] menuPunkter)
     {
         MenuPunkter = menuPunkter;
     }
-    
+
     //Returner true eller false afhængigt af input for at starte eller stoppe programmet
     public bool StartOgStop(string input)
     {
         return input == "start";
     }
-    
+
     //Itererer over menupunkterne, for at lave menupunktslisten
     private string LavMenupunkter()
     {
@@ -22,6 +23,7 @@ class MenuManager
         {
             nytPunkt += $"{i + 1}) {MenuPunkter[i]}\n";
         }
+
         return nytPunkt;
     }
 
