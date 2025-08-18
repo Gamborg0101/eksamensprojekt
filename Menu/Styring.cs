@@ -40,7 +40,7 @@ class Styring
                     _person.SletBesøgende();
                     break;
                 case 4:
-                    Console.Write("Tak for denne gang");
+                    Console.WriteLine("Tak for denne gang");
                     _startMenuManager.StartOgStop("stop");
                     return;
                 default:

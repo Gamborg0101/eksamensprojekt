@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/caspergamborg/Desktop/eksamensprojekt/eksamensprojekt.csproj": {}
+    "/Users/au532064/Desktop/code/cSharp/eksamensprojekt/eksamensprojekt.csproj": {}
   },
   "projects": {
-    "/Users/caspergamborg/Desktop/eksamensprojekt/eksamensprojekt.csproj": {
+    "/Users/au532064/Desktop/code/cSharp/eksamensprojekt/eksamensprojekt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/caspergamborg/Desktop/eksamensprojekt/eksamensprojekt.csproj",
+        "projectUniqueName": "/Users/au532064/Desktop/code/cSharp/eksamensprojekt/eksamensprojekt.csproj",
         "projectName": "eksamensprojekt",
-        "projectPath": "/Users/caspergamborg/Desktop/eksamensprojekt/eksamensprojekt.csproj",
-        "packagesPath": "/Users/caspergamborg/.nuget/packages/",
-        "outputPath": "/Users/caspergamborg/Desktop/eksamensprojekt/obj/",
+        "projectPath": "/Users/au532064/Desktop/code/cSharp/eksamensprojekt/eksamensprojekt.csproj",
+        "packagesPath": "/Users/au532064/.nuget/packages/",
+        "outputPath": "/Users/au532064/Desktop/code/cSharp/eksamensprojekt/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/caspergamborg/.nuget/NuGet/NuGet.Config"
+          "/Users/au532064/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
