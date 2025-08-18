@@ -1,4 +1,5 @@
 namespace eksamensprojekt.Folk;
+
 using Input;
 
 public class MedarbejderFactory
@@ -19,7 +20,6 @@ public class MedarbejderFactory
             startTidspunkt = InputHåndtering.LæsStarttidspunkt();
             slutTidspunkt = InputHåndtering.LæsSluttidspunkt();
         }
-        //Skal begge to ikke tjekkes? Lige nu er det kun en af dem der evalueres 
         while (!(Tidsstyring.SlutErEfterStart(startTidspunkt, slutTidspunkt)
                  && Tidsstyring.ErIndeForMaxMødeTid(startTidspunkt, slutTidspunkt, MedarbejderMødeTid)));
         Console.WriteLine($"Tilføjer medarbejder - {name} - til besøgslisten");

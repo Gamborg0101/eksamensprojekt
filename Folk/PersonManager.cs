@@ -1,28 +1,29 @@
 namespace eksamensprojekt.Folk;
+
 using Input;
 
 public class PersonManager
 {
    private readonly List<Person> _besøgendeListe = new();
    private readonly Validator _validate = new();
-   
+
    //Tager brugerinput - Laver objekt og tilføjer enten medarbejder eller besøgende
    public void TilføjPerson(int valg)
    {
       switch (valg)
       {
          case 1:
-         {
-            BesøgendeFactory besøgende = new BesøgendeFactory();
-            OpretBesøgende(besøgende.LavBesøgende());
-            break;
-         }
+            {
+               BesøgendeFactory besøgende = new BesøgendeFactory();
+               OpretBesøgende(besøgende.LavBesøgende());
+               break;
+            }
          case 2:
-         {
-            MedarbejderFactory medarbejder = new MedarbejderFactory();
-            OpretBesøgende(medarbejder.LavMedarbejder());
-            break;
-         }
+            {
+               MedarbejderFactory medarbejder = new MedarbejderFactory();
+               OpretBesøgende(medarbejder.LavMedarbejder());
+               break;
+            }
          default:
             Console.WriteLine("Ugyldigt valg");
             break;
@@ -41,11 +42,11 @@ public class PersonManager
          Console.WriteLine("Listen er tom!");
          return;
       }
-      
+
       Person fundetId = _validate.LæsBrugerIntInputSletMenu(_besøgendeListe);
       Console.WriteLine($"Registrering - {fundetId.Id} - er blevet slettet");
       _besøgendeListe.Remove(fundetId);
-      
+
    }
 
    //Print alle funktion, hvor både besøgende og medarbejdere bliver printet
