@@ -30,7 +30,7 @@ class Tidsstyring
     }
 
     //Kontrollere om starttidspunktet er tidligere end sluttidspunktet
-    public static bool StartogSlutErGyldigt(DateTime start, DateTime slut)
+    public static bool SlutErEfterStart(DateTime start, DateTime slut)
     {
         if (start >= slut)
         {
@@ -41,7 +41,7 @@ class Tidsstyring
     }
 
     //Tjekker om mødetiden overskredet i forhold til deres tilladte mødetid
-    public static bool TjekMaxMødetid(DateTime start, DateTime slut, TimeSpan maxMødeTid)
+    public static bool ErIndeForMaxMødeTid(DateTime start, DateTime slut, TimeSpan maxMødeTid)
     {
         TimeSpan diff = slut - start;
         if (diff.TotalHours <= maxMødeTid.Hours)

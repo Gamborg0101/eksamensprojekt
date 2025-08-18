@@ -13,10 +13,11 @@ class Program
 
 /*
 todo 
-    er MaxMødeTid en metode? Hvordan bruges polymorphi, hvis det overhovedet er det? (kan se, at jeg bruger override)
-    Få styr på && samt || i forhold til, at hvis første evaluer true, hvad så?
-    Hvorfor skal jeg bruge using Folk; i InputHåndtering nuhvor den er under Input?
-
-
+    er MaxMødeTid en metode? er det ikke smartere at manupulere den fra metoden, og ikke inde i factory? 
+    Hvordan bruges polymorphi, hvis det overhovedet er det? (kan se, at jeg bruger override)    
+    Snak med Niels om: 
+    Medarbejder factory logik? 
+    MaxMødeTid 
+    Validator - hvorfor laver vi det egenligt til et array? 
 
  */

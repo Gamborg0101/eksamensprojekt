@@ -14,13 +14,13 @@ public class PersonManager
          case 1:
          {
             BesøgendeFactory besøgende = new BesøgendeFactory();
-            OpretBesøgende(besøgende.IndtastBesøgende());
+            OpretBesøgende(besøgende.LavBesøgende());
             break;
          }
          case 2:
          {
             MedarbejderFactory medarbejder = new MedarbejderFactory();
-            OpretBesøgende(medarbejder.IndtastMedarbejder());
+            OpretBesøgende(medarbejder.LavMedarbejder());
             break;
          }
          default:

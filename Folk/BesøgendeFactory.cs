@@ -7,7 +7,7 @@ public class BesøgendeFactory
     public static TimeSpan BesøgendeMødetid = TimeSpan.FromHours(1);
 
     //Initialisere, validere og returner besøgende-objekt
-    public Besøgende IndtastBesøgende()
+    public Besøgende LavBesøgende()
     {
         string name = InputHåndtering.LæsNavn();
         string begrundelse = InputHåndtering.LæsBegrundelse();
@@ -20,10 +20,10 @@ public class BesøgendeFactory
             startTidspunkt = InputHåndtering.LæsStarttidspunkt();
             slutTidspunkt = InputHåndtering.LæsSluttidspunkt();
         }
-        while (!Tidsstyring.StartogSlutErGyldigt(startTidspunkt, slutTidspunkt)
-                || !Tidsstyring.TjekMaxMødetid(startTidspunkt, slutTidspunkt, BesøgendeMødetid));
+        while (!(Tidsstyring.SlutErEfterStart(startTidspunkt, slutTidspunkt)
+                 && Tidsstyring.ErIndeForMaxMødeTid(startTidspunkt, slutTidspunkt, BesøgendeMødetid)));
         Console.WriteLine($"Tilføjer besøgende - {name} - til besøgslisten");
-
+        
         return new Besøgende
         {
             Name = name,
